@@ -1,18 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/activity_main"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="pr.tongson.MainActivity">
+<LinearLayout android:id="@+id/activity_main"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:clipChildren="false"
+              android:orientation="vertical"
+              tools:context="pr.tongson.MainActivity">
 
-    <TextView
-        android:id="@+id/show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"/>
-</RelativeLayout>
+
+    <!--  <android.support.v4.view.ViewPager
+          android:id="@+id/view_pager"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1.0"/>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+
+
+        <Button
+            android:id="@+id/catch_patch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="拉取最新的patch"/>
+
+        <Button
+            android:id="@+id/test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试"/>
+
+        <Button
+            android:id="@+id/clean_patch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="清除本地补丁版本号"/>
+
+        <Button
+            android:id="@+id/clean_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="清除下列通知message"/>
+
+        <Button
+            android:id="@+id/close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="关闭应用"/>
+
+        <TextView
+            android:id="@+id/show_massage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#B0C4DE"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/left_1_iv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher"/>
+
+        <ImageView
+            android:id="@+id/left_2_iv"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher"/>
+
+        <ImageView
+            android:id="@+id/center_iv"
+            android:layout_width="0dp"
+            android:layout_height="64dip"
+            android:layout_gravity="bottom"
+            android:layout_weight="1.0"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher"/>
+
+        <ImageView
+            android:id="@+id/right_1_iv"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher"/>
+
+        <ImageView
+            android:id="@+id/right_2_iv"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher"/>
+    </LinearLayout>
+
+</LinearLayout>

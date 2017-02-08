@@ -1,8 +1,8 @@
 apply plugin: 'tinkerpatch-support'
 
-def bakPath = file("${buildDir}/bakApk/")
-def baseInfo = "ts_play_application-1.0.0-0204-18-33-13"
-def variantName = "release"
+def bakPath = file("${rootDir}/bakApk/")
+//def baseInfo = "ts_play_application-1.0.0-0204-18-33-13"
+//def variantName = "release"
 
 tinkerpatchSupport {
     tinkerpatchSupport {
@@ -31,6 +31,7 @@ tinkerpatchSupport {
 android {
     defaultConfig {
         buildConfigField "boolean", "TINKER_ENABLE", "${tinkerpatchSupport.tinkerEnable}"
+        resValue "string", "baseInfo", "${baseInfo}"
     }
 }
 
