@@ -16,6 +16,7 @@ public class FetchPatchHandler extends Handler {
 
     /**
      * 通过handler, 达到按照时间间隔轮训的效果
+     *
      * @param hour
      */
     public void fetchPatchWithInterval(int hour) {
@@ -25,6 +26,7 @@ public class FetchPatchHandler extends Handler {
         //立刻尝试去访问,检查是否有更新
         sendEmptyMessage(0);
     }
+
     @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
