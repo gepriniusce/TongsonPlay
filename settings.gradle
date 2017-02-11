@@ -1,1 +1,1 @@
-include ':ts_play_application'
+include ':ts_play_application', ':dynamic', ':static', ':common', ':order_perssion', ':order_no_perssion'
