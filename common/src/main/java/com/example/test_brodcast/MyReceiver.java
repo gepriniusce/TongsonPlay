@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 public class MyReceiver extends BroadcastReceiver {
 
@@ -14,6 +15,8 @@ public class MyReceiver extends BroadcastReceiver {
         // TODO Auto-generated method stub
 
         String msg = intent.getStringExtra("msg");
-        Log.i(TAG, "MyReceiver："+msg);
+        Log.i(TAG, "MyReceiver：" + msg);
+        Toast.makeText(context, "MyReceiver：" + msg, Toast.LENGTH_SHORT).show();
+
     }
 }
