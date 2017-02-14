@@ -18,7 +18,20 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+    
+    productFlavors {
+        devel {
+//            applicationId "pr.tongson"
+            buildConfigField 'String', 'channel', '"渠道devel"'
+            buildConfigField "boolean","REPORT_CRASHES","true"
+        }
 
+        prod {
+//            applicationId "pr.tongson"
+            buildConfigField 'String', 'channel', '"渠道prod"'
+            buildConfigField "boolean","REPORT_CRASHES","true"
+        }
+    }
     
     buildTypes {
         release {

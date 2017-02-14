@@ -7,7 +7,7 @@ def bakPath = file("${rootDir}/bakApk/")
 tinkerpatchSupport {
     tinkerpatchSupport {
         /** 可以在debug的时候关闭 tinkerPatch **/
-        tinkerEnable = true
+        tinkerEnable = false
         reflectApplication = true
 
         autoBackupApkPath = "${bakPath}"
