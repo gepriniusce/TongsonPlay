@@ -32,6 +32,8 @@ android {
     defaultConfig {
         buildConfigField "boolean", "TINKER_ENABLE", "${tinkerpatchSupport.tinkerEnable}"
         resValue "string", "baseInfo", "${baseInfo}"
+        buildConfigField 'String', 'baseInfo', "${baseInfo}"
+
     }
 }
 

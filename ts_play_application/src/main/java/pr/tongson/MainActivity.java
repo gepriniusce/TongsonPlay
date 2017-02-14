@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 +"REPORT_CRASHES:"+BuildConfig.REPORT_CRASHES+"\n"
                 +"channel:"+BuildConfig.channel+"\n"
                 +"BUILD_TYPE:"+BuildConfig.BUILD_TYPE+"\n"
+                +"baseInfo:"+BuildConfig.baseInfo+"\n"
                 );
                 break;
             case R.id.close:
