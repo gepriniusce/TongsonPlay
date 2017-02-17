@@ -3,6 +3,9 @@
 buildscript {
     repositories {
         jcenter()
+        maven{
+            url uri('D:/repos')
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.1'
@@ -12,6 +15,7 @@ buildscript {
 
         // TinkerPatch 插件
         classpath "com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:${TINKERPATCH_VERSION}"
+        classpath "pr.tongson.packutil:packutil:1.0.0"
     }
 }
 

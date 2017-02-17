@@ -1,6 +1,7 @@
 apply plugin: 'tinkerpatch-support'
 
 def bakPath = file("${rootDir}/bakApk/")
+def patchPath = file("${rootDir}/patchApk/")
 //def baseInfo = "ts_play_application-1.0.0-0204-18-33-13"
 //def variantName = "release"
 
@@ -10,18 +11,18 @@ tinkerpatchSupport {
         tinkerEnable = false
         reflectApplication = true
 
-        autoBackupApkPath = "${bakPath}"
+//        autoBackupApkPath = "${bakPath}"
 
         /** 在tinkerpatch.com得到的appKey **/
         appKey = "0aa7e8222ceeb612"
-        appVersion = "1.0.0"
+        appVersion = "${APP_VERSION}"
 
         def pathPrefix = "${bakPath}/${baseInfo}/${variantName}/"
         def name = "${project.name}-${variantName}"
 
-        baseApkFile = "${pathPrefix}/${name}.apk"
-        baseProguardMappingFile = "${pathPrefix}/${name}-mapping.txt"
-        baseResourceRFile = "${pathPrefix}/${name}-R.txt"
+//        baseApkFile = "${pathPrefix}/${name}.apk"
+//        baseProguardMappingFile = "${pathPrefix}/${name}-mapping.txt"
+//        baseResourceRFile = "${pathPrefix}/${name}-R.txt"
     }
 }
 
@@ -32,11 +33,10 @@ android {
     defaultConfig {
         buildConfigField "boolean", "TINKER_ENABLE", "${tinkerpatchSupport.tinkerEnable}"
         resValue "string", "baseInfo", "${baseInfo}"
-        buildConfigField 'String', 'baseInfo', "${baseInfo}"
+        buildConfigField 'String', 'BASE_INFO', '"' + "${baseInfo}" + '"'
 
     }
 }
-
 
 /**
  * 一般来说,我们无需对下面的参数做任何的修改
@@ -70,4 +70,115 @@ tinkerPatch {
     buildConfig {
         keepDexApply = false
     }
+
+    /**
+     * 获得所有渠道集合，并判断数量
+     */
+    List flavors = new ArrayList<>();
+    project.android.productFlavors.each { flavor ->
+        flavors.add(flavor.name)
+    }
+
+
+    boolean hasFlavors = flavors.size() > 0
+    /**
+     * bak apk and mapping
+     *  创建Task并执行文件操作
+     */
+    android.applicationVariants.all { variant ->
+        /**
+         * task type, you want to bak
+         */
+        def taskName = variant.name
+        def date = new Date().format("MM-dd-HH-mm-ss")
+        tasks.all {
+            if ("assemble${taskName.capitalize()}".equalsIgnoreCase(it.name)) {
+                it.doLast {
+                    copy {
+                        def fileNamePrefix = "${project.name}-${variant.baseName}"
+                        def newFileNamePrefix = hasFlavors ? "${fileNamePrefix}" : "${fileNamePrefix}-${date}"
+                        def destPath = hasFlavors ? file("${bakPath}/${project.name}-${date}/${variant.flavorName}") : bakPath
+                        from variant.outputs.outputFile
+                        into destPath
+                        rename { String fileName ->
+                            fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
+                        }
+                        from "${buildDir}/outputs/mapping/${variant.dirName}/mapping.txt"
+                        into destPath
+                        rename { String fileName ->
+                            fileName.replace("mapping.txt", "${newFileNamePrefix}-mapping.txt")
+                        }
+                        from "${buildDir}/intermediates/symbols/${variant.dirName}/R.txt"
+                        into destPath
+                        rename { String fileName ->
+                            fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * 如果有渠道则进行多渠道打包
+     */
+  project.afterEvaluate {
+        //sample use for build all flavor for one time
+        if (hasFlavors) {
+            //          release版本的task
+            task(tinkerPatchAllFlavorRelease) {
+                group = 'tinker'
+                def originOldPath = getTinkerBuildFlavorDirectory()
+                for (String flavor : flavors) {
+                    def tinkerTask = tasks.getByName("tinkerPatch${flavor.capitalize()}Release")
+                    dependsOn tinkerTask
+                    def preAssembleTask = tasks.getByName("process${flavor.capitalize()}ReleaseManifest")
+                    preAssembleTask.doFirst {
+                        //                        String flavorName = preAssembleTask.name.substring(7, 8).toLowerCase() + preAssembleTask.name.substring(8, preAssembleTask.name.length() - 15)
+                        String flavorName = flavor.substring(getSameStringCount(), flavor.length())
+                        def bakApkPath = "${originOldPath}/${flavor}/"
+                        def name = bakApkPath + "${project.name}-${flavor}"
+                        project.tinkerPatch.oldApk = bakApkPath + getTinkerApkName() + flavorName + "_release.apk"
+                        project.tinkerPatch.buildConfig.applyMapping = name + "-release-mapping.txt"
+                        project.tinkerPatch.buildConfig.applyResourceMapping = name + "-release-R.txt"
+                    }
+                }
+            }
+            //            debug版本的task
+            //            task(tinkerPatchAllFlavorDebug) {
+            //                group = 'tinker'
+            //                def originOldPath = getTinkerBuildFlavorDirectory()
+            //                for (String flavor : flavors) {
+            //                    def tinkerTask = tasks.getByName("tinkerPatch${flavor.capitalize()}Debug")
+            //                    dependsOn tinkerTask
+            //                    def preAssembleTask = tasks.getByName("process${flavor.capitalize()}DebugManifest")
+            //                    preAssembleTask.doFirst {
+            //                        String flavorName = preAssembleTask.name.substring(7, 8).toLowerCase() + preAssembleTask.name.substring(8, preAssembleTask.name.length() - 13)
+            //                        project.tinkerPatch.oldApk = "${originOldPath}/${flavorName}/${project.name}_${flavorName}-debug.apk"
+            //                        project.tinkerPatch.buildConfig.applyMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-debug-mapping.txt"
+            //                        project.tinkerPatch.buildConfig.applyResourceMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-debug-R.txt"
+            //                    }
+            //                }
+            //            }
+        }
+    }
+
+}
+
+ext {
+    //多渠道
+    tinkerBuildFlavorDirectory = "${bakPath}/${baseInfo}"
+    tinkerApkName = "${variantName}"
+    count=Integer.parseInt("${sameStringCount}")
+}
+
+def getTinkerBuildFlavorDirectory() {
+    return ext.tinkerBuildFlavorDirectory
+}
+
+def getTinkerApkName() {
+    return ext.tinkerApkName
+}
+def getSameStringCount() {
+    return ext.count
 }

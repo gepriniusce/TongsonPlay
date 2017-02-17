@@ -112,10 +112,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.clean_message:
                 showMessageTv.setText("BuildConfig.VERSION_NAME:" + BuildConfig.VERSION_NAME + "\n" + "baseInfo:" + getString(R.string.baseInfo) + "\n信息已清除"+"\n"
-                +"REPORT_CRASHES:"+BuildConfig.REPORT_CRASHES+"\n"
-                +"channel:"+BuildConfig.channel+"\n"
-                +"BUILD_TYPE:"+BuildConfig.BUILD_TYPE+"\n"
-                +"baseInfo:"+BuildConfig.baseInfo+"\n"
+//                +"REPORT_CRASHES:"+BuildConfig.REPORT_CRASHES+"\n"
+//                +"channel:"+BuildConfig.channel+"\n"
+//                +"BUILD_TYPE:"+BuildConfig.BUILD_TYPE+"\n"
+//                +"baseInfo:"+BuildConfig.BASE_INFO+"\n"
+                        
                 );
                 break;
             case R.id.close:

@@ -1,5 +1,23 @@
 apply plugin: 'com.android.application'
-apply from: 'tinkerpatch.gradle'
+apply plugin: 'apk.pack.util'
+// 时间
+def buildTime() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy_MM_dd')
+    return formattedDate
+}
+
+// 这里就是获取渠道名（cn_）然后截取后面的字符串，所以在前面定义多渠道的时候建议
+// 统一使用cn_的形式
+def buildFlavorName(String name) {
+    int count=Integer.parseInt("${sameStringCount}")
+    return name.substring(count)
+}
+// 软件的名字
+def buildAppName() {
+    return "TongsonPlay"
+}
+
 android {
     signingConfigs {
         debug {
@@ -13,31 +31,59 @@ android {
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0.0"
+        versionName "${APP_VERSION}"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
-    
+
     productFlavors {
         devel {
 //            applicationId "pr.tongson"
-            buildConfigField 'String', 'channel', '"渠道devel"'
-            buildConfigField "boolean","REPORT_CRASHES","true"
+//            buildConfigField 'String', 'channel', '"渠道devel"'
+//            buildConfigField "boolean", "REPORT_CRASHES", "true"
         }
 
         prod {
 //            applicationId "pr.tongson"
-            buildConfigField 'String', 'channel', '"渠道prod"'
-            buildConfigField "boolean","REPORT_CRASHES","true"
+//            buildConfigField 'String', 'channel', '"渠道prod"'
+//            buildConfigField "boolean", "REPORT_CRASHES", "true"
         }
+        
+        cn_long{}
+
+//        wandoujia {
+//            manifestPlaceholders = [CHANNEL_VALUE: 'wandoujia', CHANNEL_ID: 200]
+//        }
+//        qihu360 {
+//            manifestPlaceholders = [CHANNEL_VALUE: '360', CHANNEL_ID: 201]
+//        }
+//        baidu {
+//            manifestPlaceholders = [CHANNEL_VALUE: 'baidu', CHANNEL_ID: 202]
+//        }
     }
-    
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            // shrinkResources true
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
+
+            // 文件名
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    if (output.outputFile != null && output.outputFile.name.endsWith('.apk')
+                            && 'release'.equals(variant.buildType.name)) {
+                        def channel = variant.flavorName.toString()
+                        def apkfilename = "${buildTime()}_${buildAppName()}_V${variant.versionName}" +
+                                "_CN_${buildFlavorName(channel)}_${variant.buildType.name}.apk";
+                        def apkFile = new File(output.outputFile.getParent(), apkfilename)
+                        output.outputFile = apkFile
+                    }
+                }
+            }
         }
         debug {
             debuggable true
@@ -58,3 +104,5 @@ dependencies {
     provided("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
     compile("com.tinkerpatch.sdk:tinkerpatch-android-sdk:${TINKERPATCH_VERSION}") { changing = true }
 }
+
+apply from: 'tinkerpatch.gradle'
