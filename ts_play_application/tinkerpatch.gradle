@@ -8,7 +8,7 @@ def patchPath = file("${rootDir}/patchApk/")
 tinkerpatchSupport {
     tinkerpatchSupport {
         /** 可以在debug的时候关闭 tinkerPatch **/
-        tinkerEnable = false
+        tinkerEnable = true
         reflectApplication = true
 
 //        autoBackupApkPath = "${bakPath}"
@@ -86,45 +86,49 @@ tinkerPatch {
      *  创建Task并执行文件操作
      */
     android.applicationVariants.all { variant ->
-        /**
-         * task type, you want to bak
-         */
-        def taskName = variant.name
-        def date = new Date().format("MM-dd-HH-mm-ss")
-        tasks.all {
-            if ("assemble${taskName.capitalize()}".equalsIgnoreCase(it.name)) {
-                it.doLast {
-                    copy {
-                        def fileNamePrefix = "${project.name}-${variant.baseName}"
-                        def newFileNamePrefix = hasFlavors ? "${fileNamePrefix}" : "${fileNamePrefix}-${date}"
-                        def destPath = hasFlavors ? file("${bakPath}/${project.name}-${date}/${variant.flavorName}") : bakPath
-                        from variant.outputs.outputFile
-                        into destPath
-                        rename { String fileName ->
-                            fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
-                        }
-                        from "${buildDir}/outputs/mapping/${variant.dirName}/mapping.txt"
-                        into destPath
-                        rename { String fileName ->
-                            fileName.replace("mapping.txt", "${newFileNamePrefix}-mapping.txt")
-                        }
-                        from "${buildDir}/intermediates/symbols/${variant.dirName}/R.txt"
-                        into destPath
-                        rename { String fileName ->
-                            fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
+
+        if (tinkerEnable) {
+
+            /**
+             * task type, you want to bak
+             */
+            def taskName = variant.name
+            def date = new Date().format("MM-dd-HH-mm-ss")
+            tasks.all {
+                if ("assemble${taskName.capitalize()}".equalsIgnoreCase(it.name)) {
+                    it.doLast {
+                        copy {
+                            def fileNamePrefix = "${project.name}-${variant.baseName}"
+                            def newFileNamePrefix = hasFlavors ? "${fileNamePrefix}" : "${fileNamePrefix}-${date}"
+                            def destPath = hasFlavors ? file("${bakPath}/${project.name}-${date}/${variant.flavorName}") : bakPath
+                            from variant.outputs.outputFile
+                            into destPath
+                            rename { String fileName ->
+                                fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
+                            }
+                            from "${buildDir}/outputs/mapping/${variant.dirName}/mapping.txt"
+                            into destPath
+                            rename { String fileName ->
+                                fileName.replace("mapping.txt", "${newFileNamePrefix}-mapping.txt")
+                            }
+                            from "${buildDir}/intermediates/symbols/${variant.dirName}/R.txt"
+                            into destPath
+                            rename { String fileName ->
+                                fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
+                            }
                         }
                     }
                 }
             }
         }
     }
-    
+
     /**
      * 如果有渠道则进行多渠道打包
      */
-  project.afterEvaluate {
+    project.afterEvaluate {
         //sample use for build all flavor for one time
-        if (hasFlavors) {
+        if (hasFlavors && tinkerEnable) {
             //          release版本的task
             task(tinkerPatchAllFlavorRelease) {
                 group = 'tinker'
@@ -163,13 +167,14 @@ tinkerPatch {
         }
     }
 
+
 }
 
 ext {
     //多渠道
     tinkerBuildFlavorDirectory = "${bakPath}/${baseInfo}"
     tinkerApkName = "${variantName}"
-    count=Integer.parseInt("${sameStringCount}")
+    count = Integer.parseInt("${sameStringCount}")
 }
 
 def getTinkerBuildFlavorDirectory() {
@@ -179,6 +184,7 @@ def getTinkerBuildFlavorDirectory() {
 def getTinkerApkName() {
     return ext.tinkerApkName
 }
+
 def getSameStringCount() {
     return ext.count
 }
