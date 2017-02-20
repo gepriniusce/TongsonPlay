@@ -146,6 +146,12 @@ tinkerPatch {
                         project.tinkerPatch.buildConfig.applyMapping = name + "-release-mapping.txt"
                         project.tinkerPatch.buildConfig.applyResourceMapping = name + "-release-R.txt"
                     }
+//                    def destPath = file( "${patchPath}/" + flavorName)
+//                    from "${buildDir}/outputs/tinkerPatch/" + flavorName + "/patch_signed.apk"
+//                    into destPath
+//                    rename { String fileName ->
+//                        fileName.replace("patch_signed.apk", flavorName + "-patch_signed.apk")
+//                    }
                 }
             }
             //            debug版本的task
@@ -170,11 +176,18 @@ tinkerPatch {
 
 }
 
+project.afterEvaluate {
+    
+    
+    
+}
+
 ext {
     //多渠道
     tinkerBuildFlavorDirectory = "${bakPath}/${baseInfo}"
     tinkerApkName = "${variantName}"
     count = Integer.parseInt("${sameStringCount}")
+//    patchPath = "${patchPath}"
 }
 
 def getTinkerBuildFlavorDirectory() {
@@ -187,4 +200,10 @@ def getTinkerApkName() {
 
 def getSameStringCount() {
     return ext.count
+
 }
+
+//def getPatchPath() {
+//    return ext.patchPath
+//}
+apply plugin: 'apk.pack.util'

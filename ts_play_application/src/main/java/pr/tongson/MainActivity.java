@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button cleanMessageBtn = (Button) findViewById(R.id.clean_message);
         Button closeBtn = (Button) findViewById(R.id.close);
         showMessageTv = (TextView) findViewById(R.id.show_massage);
-        showMessageTv.setText("原版包");
-        //        showMessageTv.setText("补丁包咯");
+        //        showMessageTv.setText("原版包");
+        showMessageTv.setText("补丁包咯");
         catchPatchBtn.setOnClickListener(this);
         testBtn.setOnClickListener(this);
         cleanPatchBtn.setOnClickListener(this);
@@ -112,14 +112,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showMessageTv.setText("清除补丁");
                 break;
             case R.id.clean_message:
-//                showMessageTv.setText("BuildConfig.VERSION_NAME:" + BuildConfig.VERSION_NAME + "\n" + "baseInfo:" + getString(R.string.baseInfo) + "\n信息已清除"+"\n"
-//                        
-////                +"REPORT_CRASHES:"+BuildConfig.REPORT_CRASHES+"\n"
-////                +"channel:"+BuildConfig.channel+"\n"
-////                +"BUILD_TYPE:"+BuildConfig.BUILD_TYPE+"\n"
-////                +"baseInfo:"+BuildConfig.BASE_INFO+"\n"
-//                        
-//                );
+                //                showMessageTv.setText("BuildConfig.VERSION_NAME:" + BuildConfig.VERSION_NAME + "\n" + "baseInfo:" + getString(R.string.baseInfo) + "\n信息已清除"+"\n"
+                //                        
+                ////                +"REPORT_CRASHES:"+BuildConfig.REPORT_CRASHES+"\n"
+                ////                +"channel:"+BuildConfig.channel+"\n"
+                ////                +"BUILD_TYPE:"+BuildConfig.BUILD_TYPE+"\n"
+                ////                +"baseInfo:"+BuildConfig.BASE_INFO+"\n"
+                //                        
+                //                );
                 showMessageTv.setText("BuildConfig.VERSION_NAME:" + BuildConfig.VERSION_NAME + "\n" + "BuildConfig.BASE_INFO:" + BuildConfig.BASE_INFO + "\n信息已清除");
 
                 break;
