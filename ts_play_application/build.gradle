@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'apk.pack.util'
 // 时间
 def buildTime() {
     def date = new Date()
@@ -90,6 +91,10 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+//    task myTask <<  {
+//        println '============================I am normal myTask============================'
+//    }
 }
 
 dependencies {

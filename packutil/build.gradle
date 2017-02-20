@@ -13,6 +13,8 @@ dependencies {
     compile gradleApi()
     //groovy sdk
     compile localGroovy()
+    compile 'com.android.tools.build:gradle:1.5.0'
+
 }
 
 repositories {
@@ -23,7 +25,7 @@ repositories {
 
 //group和version在后面使用自定义插件的时候会用到
 group='pr.tongson.packutil'
-version='1.0.0'
+version='1.0.1'
 
 uploadArchives {
     repositories {
@@ -33,7 +35,7 @@ uploadArchives {
             //    authentication(userName: "admin", password: "admin")
             // }
             //本地的Maven地址设置为D:/repos
-            repository(url: uri('D:/repos'))
+            repository(url: uri('C:/repos'))
         }
     }
 }

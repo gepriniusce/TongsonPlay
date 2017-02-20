@@ -152,6 +152,7 @@ tinkerPatch {
 //                    rename { String fileName ->
 //                        fileName.replace("patch_signed.apk", flavorName + "-patch_signed.apk")
 //                    }
+                        println "============================ afterEvaluatefor (String flavor : flavors)======================"
                 }
             }
             //            debug版本的task
@@ -170,17 +171,13 @@ tinkerPatch {
             //                    }
             //                }
             //            }
+
         }
     }
 
 
 }
 
-project.afterEvaluate {
-    
-    
-    
-}
 
 ext {
     //多渠道
@@ -206,4 +203,6 @@ def getSameStringCount() {
 //def getPatchPath() {
 //    return ext.patchPath
 //}
-apply plugin: 'apk.pack.util'
+
+
+apply from: 'packpatch.gradle'
