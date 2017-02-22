@@ -4,6 +4,12 @@ def bakPath = file("${rootDir}/bakApk/")
 def patchPath = file("${rootDir}/patchApk/")
 //def baseInfo = "ts_play_application-1.0.0-0204-18-33-13"
 //def variantName = "release"
+project.assemble.doLast {
+    println "========================assemble finish========================"
+}
+project.assemble.doFirst {
+    println "========================assemble start========================"
+}
 
 tinkerpatchSupport {
     tinkerpatchSupport {

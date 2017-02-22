@@ -3,6 +3,14 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 
 
+//task myCustomTask(type : pr.tongson.packutil.task.HelloGradleTask){
+//    println("########## custom task ###########")
+//}
+task hello << {
+    println 'hello'
+}
+
+
 compileGroovy {
     sourceCompatibility = 1.7
     targetCompatibility = 1.7
@@ -13,7 +21,8 @@ dependencies {
     compile gradleApi()
     //groovy sdk
     compile localGroovy()
-    compile 'com.android.tools.build:gradle:1.5.0'
+    compile 'com.android.tools.build:gradle:2.2.1'
+
 
 }
 
@@ -39,3 +48,7 @@ uploadArchives {
         }
     }
 }
+//
+//task myCustomTask(type : pr.tongson.packutil.task.HelloGradleTask){
+//    println("########## custom task ###########")
+//}

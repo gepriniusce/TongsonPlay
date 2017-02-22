@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button cleanMessageBtn = (Button) findViewById(R.id.clean_message);
         Button closeBtn = (Button) findViewById(R.id.close);
         showMessageTv = (TextView) findViewById(R.id.show_massage);
-        //        showMessageTv.setText("原版包");
-        showMessageTv.setText("补丁包咯");
+                showMessageTv.setText("原版包");
+//        showMessageTv.setText("补丁包咯");
         catchPatchBtn.setOnClickListener(this);
         testBtn.setOnClickListener(this);
         cleanPatchBtn.setOnClickListener(this);
