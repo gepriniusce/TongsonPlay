@@ -41,12 +41,12 @@ public class MyPlugin implements Plugin<Project> {
                     variant.outputs.each { output ->
                         if (output.outputFile != null && output.outputFile.name.endsWith(".apk") && "release".equals(variant.buildType.name)) {
                             def flavor = variant.flavorName.toString();
-                            println "========================flavor:" + flavor + "========================"
-                            def buildTime = new Date().format("yyyy_MM_dd");
-                            def apkname = projectName;
-                            def apkFileName = "${buildTime}_${apkname}_V${variant.versionName}_${flavor}.apk";
-                            def apkFile = new File(output.outputFile.getParent(), apkFileName);
-                            output.outputFile = apkFile;
+//                            println "========================flavor:" + flavor + "========================"
+//                            def buildTime = new Date().format("yyyy_MM_dd");
+//                            def apkname = projectName;
+//                            def apkFileName = "${buildTime}_${apkname}_V${variant.versionName}_${flavor}.apk";
+//                            def apkFile = new File(output.outputFile.getParent(), apkFileName);
+//                            output.outputFile = apkFile;
 
                             apkDir = new File("${project.buildDir}/outputs/tinkerPatch/${flavor}/release");
                             if (!apkDir.exists() || !apkDir.isDirectory()) return;

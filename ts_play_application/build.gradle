@@ -10,7 +10,7 @@ def buildTime() {
 // 这里就是获取渠道名（cn_）然后截取后面的字符串，所以在前面定义多渠道的时候建议
 // 统一使用cn_的形式
 def buildFlavorName(String name) {
-    int count=Integer.parseInt("${sameStringCount}")
+    int count = Integer.parseInt("${sameStringCount}")
     return name.substring(count)
 }
 // 软件的名字
@@ -49,8 +49,8 @@ android {
 //            buildConfigField 'String', 'channel', '"渠道prod"'
 //            buildConfigField "boolean", "REPORT_CRASHES", "true"
         }
-        
-        cn_long{}
+
+        cn_long {}
 
 //        wandoujia {
 //            manifestPlaceholders = [CHANNEL_VALUE: 'wandoujia', CHANNEL_ID: 200]
@@ -92,9 +92,7 @@ android {
         }
     }
 
-//    task myTask <<  {
-//        println '============================I am normal myTask============================'
-//    }
+
 }
 
 dependencies {
@@ -107,7 +105,11 @@ dependencies {
     // 若使用annotation需要单独引用,对于tinker的其他库都无需再引用
     provided("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
     compile("com.tinkerpatch.sdk:tinkerpatch-android-sdk:${TINKERPATCH_VERSION}") { changing = true }
+    
+
 }
+
+
 
 apply from: 'tinkerpatch.gradle'
 

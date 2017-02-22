@@ -15,6 +15,7 @@ buildscript {
 
         // TinkerPatch 插件
         classpath "com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:${TINKERPATCH_VERSION}"
+        //本地引用
         classpath "pr.tongson.packutil:packutil:1.0.1"
     }
 
