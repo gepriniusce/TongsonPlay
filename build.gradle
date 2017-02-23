@@ -3,9 +3,13 @@
 buildscript {
     repositories {
         jcenter()
-        maven{
-            url uri('C:/repos')
+        maven {
+            //本地引用
+//            url uri('C:/repos')
+            //远程引用
+            url "https://raw.githubusercontent.com/gepriniusce/TongsonPlug-in/master"
         }
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.1'
@@ -16,7 +20,9 @@ buildscript {
         // TinkerPatch 插件
         classpath "com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:${TINKERPATCH_VERSION}"
         //本地引用
-        classpath "pr.tongson.packutil:packutil:1.0.1"
+//        classpath "pr.tongson.packutil:packutil:1.0.1"
+        //远程引用
+        classpath "pr.tongson.packutil:packutil:1.0.0"
     }
 
 }
