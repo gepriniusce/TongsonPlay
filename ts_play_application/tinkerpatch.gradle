@@ -1,34 +1,19 @@
 apply plugin: 'tinkerpatch-support'
 
 def bakPath = file("${rootDir}/bakApk/")
-def patchPath = file("${rootDir}/patchApk/")
-//def baseInfo = "ts_play_application-1.0.0-0204-18-33-13"
-//def variantName = "release"
-project.assemble.doLast {
-    println "========================assemble finish========================"
-}
-project.assemble.doFirst {
-    println "========================assemble start========================"
-}
+/** 可以在debug的时候关闭 tinkerPatch **/
+def tinkerEnable = false
 
 tinkerpatchSupport {
     tinkerpatchSupport {
-        /** 可以在debug的时候关闭 tinkerPatch **/
-        tinkerEnable = true
+//       是否反射 Application 实现一键接入；一般来说，接入 Tinker 我们需要改造我们的 Application, 若这里为 true， 即我们无需对应用做任何改造即可接入。
         reflectApplication = true
-
-//        autoBackupApkPath = "${bakPath}"
 
         /** 在tinkerpatch.com得到的appKey **/
         appKey = "0aa7e8222ceeb612"
+//在 TinkerPatch 平台 输入的版本号, 例如 sample 中的 '1.0.0'。 注意，我们使用 appVersion 作为 TinkerId, 我们需要保证每个发布出去的基础安装包的 appVersion 都不一样。
         appVersion = "${APP_VERSION}"
 
-        def pathPrefix = "${bakPath}/${baseInfo}/${variantName}/"
-        def name = "${project.name}-${variantName}"
-
-//        baseApkFile = "${pathPrefix}/${name}.apk"
-//        baseProguardMappingFile = "${pathPrefix}/${name}-mapping.txt"
-//        baseResourceRFile = "${pathPrefix}/${name}-R.txt"
     }
 }
 
@@ -50,26 +35,90 @@ android {
  * https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97
  */
 tinkerPatch {
+    /**
+     * 如果出现以下的情况，并且ignoreWarning为false，我们将中断编译。因为这些情况可能会导致编译出来的patch包
+     * 带来风险：
+     * 1. minSdkVersion小于14，但是dexMode的值为"raw";
+     * 2. 新编译的安装包出现新增的四大组件(Activity, BroadcastReceiver...)；
+     * 3. 定义在dex.loader用于加载补丁的类不在main dex中;
+     * 4. 定义在dex.loader用于加载补丁的类出现修改；
+     * 5. resources.arsc改变，但没有使用applyResourceMapping编译。
+     * */
     ignoreWarning = false
+    /**
+     * 在运行过程中，我们需要验证基准apk包与补丁包的签名是否一致，是否需要为你签名
+     * */
     useSign = true
     dex {
+        /**
+         * 只能是'raw'或者'jar'。
+         * 对于'raw'模式，我们将会保持输入dex的格式。
+         * 对于'jar'模式，我们将会把输入dex重新压缩封装到jar。如果你的minSdkVersion小于14，你必须选择‘jar’模式
+         * ，而且它更省存储空间，但是验证md5时比'raw'模式耗时()
+         * */
         dexMode = "jar"
+        /**
+         * 是否提前生成dex，而非合成的方式。这套方案即回退成Qzone的方案，对于需要使用加固或者多flavor打包(建
+         * 议使用其他方式生成渠道包)的用户可使用。但是这套方案需要插桩，会造成Dalvik下性能损耗以及Art补丁包可
+         * 能过大的问题，务必谨慎使用。另外一方面，这种方案在Android N之后可能会产生问题，建议过滤N之后的用户。
+         */
+//        usePreGeneratedPatchDex = false
+        /**
+         * 需要处理dex路径，支持*、?通配符，必须使用'/'分割。路径是相对安装包的，例如/assets/...
+         */
         pattern = ["classes*.dex"]
-        loader = []
+        /**
+         *     这一项非常重要，它定义了哪些类在加载补丁包的时候会用到。这些类是通过Tinker无法修改的类，也是一定要放在main dex的类。
+         这里需要定义的类有：
+         1. 你自己定义的Application类；
+         2. Tinker库中用于加载补丁包的部分类，即com.tencent.tinker.loader.*；
+         3. 如果你自定义了TinkerLoader，需要将它以及它引用的所有类也加入loader中；
+         4. 其他一些你不希望被更改的类，例如Sample中的BaseBuildInfo类。这里需要注意的是，这些类的直接引用类也
+         需要加入到loader中。或者你需要将这个类变成非preverify。
+         */
+//        loader = []
+        loader = ["com.tencent.tinker.loader.*",
+                  //warning, you must change it with your application
+                  //TODO 换成自己的Application
+                  "oms.mmc.fortunetelling.app.LingjiCnApplication",
+        ]
     }
     lib {
+        /**
+         * 需要处理lib路径，支持*、?通配符，必须使用'/'分割。与dex.pattern一致, 路径是相对安装包的，例如/assets/...
+         */
         pattern = ["lib/*/*.so"]
     }
 
     res {
+        /**
+         * 需要处理res路径，支持*、?通配符，必须使用'/'分割。与dex.pattern一致, 路径是相对安装包的，例如/assets/...，
+         * 务必注意的是，只有满足pattern的资源才会放到合成后的资源包。
+         */
         pattern = ["res/*", "r/*", "assets/*", "resources.arsc", "AndroidManifest.xml"]
+        /**
+         * 支持*、?通配符，必须使用'/'分割。若满足ignoreChange的pattern，在编译时会忽略该文件的新增、删除与修改。
+         * 最极端的情况，ignoreChange与上面的pattern一致，即会完全忽略所有资源的修改。
+         */
         ignoreChange = []
+        /**
+         * 对于修改的资源，如果大于largeModSize，我们将使用bsdiff算法。这可以降低补丁包的大小，但是会增加合成
+         * 时的复杂度。默认大小为100kb
+         */
         largeModSize = 100
     }
 
     packageConfig {
+        /**
+         * configField("key", "value"), 默认我们自动从基准安装包与新安装包的Manifest中读取tinkerId,并自动
+         * 写入configField。在这里，你可以定义其他的信息，在运行时可以通过TinkerLoadResult.getPackageConfigByName得到相应的数值。但是建议直接通过修改代码来实现，例如BuildConfig。
+         */
+        configField("patchMessage", "tinker is sample to use")
     }
     sevenZip {
+        /**
+         * 例如"com.tencent.mm:SevenZip:1.1.10"，将自动根据机器属性获得对应的7za运行文件，推荐使用
+         */
         zipArtifact = "com.tencent.mm:SevenZip:1.1.10"
 //        path = "/usr/local/bin/7za"
     }
@@ -92,9 +141,7 @@ tinkerPatch {
      *  创建Task并执行文件操作
      */
     android.applicationVariants.all { variant ->
-
         if (tinkerEnable) {
-
             /**
              * task type, you want to bak
              */
@@ -144,7 +191,6 @@ tinkerPatch {
                     dependsOn tinkerTask
                     def preAssembleTask = tasks.getByName("process${flavor.capitalize()}ReleaseManifest")
                     preAssembleTask.doFirst {
-                        //                        String flavorName = preAssembleTask.name.substring(7, 8).toLowerCase() + preAssembleTask.name.substring(8, preAssembleTask.name.length() - 15)
                         String flavorName = flavor.substring(getSameStringCount(), flavor.length())
                         def bakApkPath = "${originOldPath}/${flavor}/"
                         def name = bakApkPath + "${project.name}-${flavor}"
@@ -152,13 +198,7 @@ tinkerPatch {
                         project.tinkerPatch.buildConfig.applyMapping = name + "-release-mapping.txt"
                         project.tinkerPatch.buildConfig.applyResourceMapping = name + "-release-R.txt"
                     }
-//                    def destPath = file( "${patchPath}/" + flavorName)
-//                    from "${buildDir}/outputs/tinkerPatch/" + flavorName + "/patch_signed.apk"
-//                    into destPath
-//                    rename { String fileName ->
-//                        fileName.replace("patch_signed.apk", flavorName + "-patch_signed.apk")
-//                    }
-                        println "============================ afterEvaluatefor (String flavor : flavors)======================"
+
                 }
             }
             //            debug版本的task
@@ -190,7 +230,6 @@ ext {
     tinkerBuildFlavorDirectory = "${bakPath}/${baseInfo}"
     tinkerApkName = "${variantName}"
     count = Integer.parseInt("${sameStringCount}")
-//    patchPath = "${patchPath}"
 }
 
 def getTinkerBuildFlavorDirectory() {
@@ -206,9 +245,16 @@ def getSameStringCount() {
 
 }
 
-//def getPatchPath() {
-//    return ext.patchPath
-//}
-
-
-apply from: 'packpatch.gradle'
+/**
+ *  文件名                              描述
+ *  patch_unsigned.apk                  没有签名的补丁包
+ *  patch_signed.apk                  签名后的补丁包
+ *  patch_signed_7zip.apk              签名后并使用7zip压缩的补丁包，也是我们通常使用的补丁包。但正式发布的时候，最好不要以.apk结尾，防止被运营商挟持。
+ *  log.txt                              在编译补丁包过程的控制台日志
+ *  dex_log.txt                          在编译补丁包过程关于dex的日志
+ *  so_log.txt                          在编译补丁包过程关于lib的日志
+ *  tinker_result                      最终在补丁包的内容，包括diff的dex、lib以及assets下面的meta文件
+ *  resources_out.zip                  最终在手机上合成的全量资源apk，你可以在这里查看是否有文件遗漏
+ *  resources_out_7z.zip              根据7zip最终在手机上合成的全量资源apk
+ *  tempPatchedDexes                  在Dalvik与Art平台，最终在手机上合成的完整Dex，我们可以在这里查看dex合成的产物。
+ * */
