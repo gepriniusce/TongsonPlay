@@ -76,12 +76,12 @@ tinkerPatch {
          4. 其他一些你不希望被更改的类，例如Sample中的BaseBuildInfo类。这里需要注意的是，这些类的直接引用类也
          需要加入到loader中。或者你需要将这个类变成非preverify。
          */
-//        loader = []
-        loader = ["com.tencent.tinker.loader.*",
-                  //warning, you must change it with your application
-                  //TODO 换成自己的Application
-                  "oms.mmc.fortunetelling.app.LingjiCnApplication",
-        ]
+        loader = []
+//        loader = ["com.tencent.tinker.loader.*",
+//                  //warning, you must change it with your application
+//                  //TODO 换成自己的Application
+//                  "oms.mmc.fortunetelling.app.LingjiCnApplication",
+//        ]
     }
     lib {
         /**
