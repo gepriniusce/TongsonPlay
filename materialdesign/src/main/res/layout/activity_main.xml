@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/activity_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="pr.tongson.materialdesign.MainActivity">
+
+    <Button
+        android:id="@+id/btn_login_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LoginActivity"/>
+
+    <Button
+        android:id="@+id/btn_base_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BasicActivity"/>
+
+    <Button
+        android:id="@+id/btn_full_screen_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FullscreenActivity"/>
+
+    <Button
+        android:id="@+id/btn_item_list_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ItemListActivity"/>
+
+    <Button
+        android:id="@+id/btn_navigation_drawer_ativity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NavigationDrawerActivity"/>
+
+    <Button
+        android:id="@+id/btn_scrolling_ativity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ScrollingActivity"/>
+
+    <Button
+        android:id="@+id/btn_tabbed_ativity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TabbedActivity"/>
+
+
+</LinearLayout>
