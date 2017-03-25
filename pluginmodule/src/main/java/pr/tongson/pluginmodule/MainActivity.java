@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import pr.tongson.pluginmodule.dialog.TongsonGetPhotoDialog;
+import pr.tongson.pluginmodule.dialog.TongsonTipDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         fabuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TongsonGetPhotoDialog dialog=new TongsonGetPhotoDialog(MainActivity.this);
+                TongsonTipDialog dialog=new TongsonTipDialog(MainActivity.this);
                 dialog.show();
             }
         });

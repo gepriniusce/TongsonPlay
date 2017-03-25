@@ -1,13 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    xmlns:a666="http://schemas.android.com/apk/res/pr.tongson.pluginmodule"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardBackgroundColor="#9674cd"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="1dp"
+    tools:ignore="ResAuto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="asdklfjasl;dfj" />
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
 
+            <pr.tongson.pluginmodule.widght.StateButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                a666:normalBackgroundColor="@android:color/holo_blue_light"
+                a666:normalTextColor="@android:color/white"
+                a666:pressedBackgroundColor="@color/colorPrimary"
+                a666:pressedTextColor="@android:color/holo_red_light"
+                a666:unableBackgroundColor="@color/colorPrimary"
+                a666:unableTextColor="@android:color/holo_orange_dark"
+                />
+
+            <pr.tongson.pluginmodule.widght.StateButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <pr.tongson.pluginmodule.widght.StateButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_bright" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 
-
-</LinearLayout>
+</android.support.v7.widget.CardView>
