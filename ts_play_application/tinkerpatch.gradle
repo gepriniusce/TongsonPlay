@@ -188,18 +188,18 @@ tinkerPatch {
                 def originOldPath = getTinkerBuildFlavorDirectory()
                 for (String flavor : flavors) {
                     def tinkerTask = tasks.getByName("tinkerPatch${flavor.capitalize()}Release")
-                    println(flavor+"====================================================================================================="+tinkerTask)
+                    println(flavor + "=====================================================================================================" + tinkerTask)
                     def preAssembleTask = tasks.getByName("process${flavor.capitalize()}ReleaseManifest")
-                    println(flavor+"====================================================================================================="+preAssembleTask)
-                    String flavorName = flavor.substring(getSameStringCount())
+                    println(flavor + "=====================================================================================================" + preAssembleTask)
+                    String flavorFolderName = flavor
+                    String preFlavorName = flavor.substring(getSameStringCount())
 
                     preAssembleTask.doFirst {
-                        println("doFirst=====================================================================================================")
-                        def bakApkPath = "${originOldPath}/${flavorName}/"
-                        def name = bakApkPath + "${project.name}-${flavorName}"
-                        println(flavorName+"doFirst====================================================================================================="+flavorName)
-
-                        project.tinkerPatch.oldApk = bakApkPath + getTinkerApkName() + flavorName + "_release.apk"
+                        def bakApkPath = "${originOldPath}/${flavorFolderName}/"
+                        def name = bakApkPath + "${project.name}-${flavorFolderName}"
+                        println(flavorFolderName + "doFirst=====================================================================================================" + flavorFolderName)
+                        println(preFlavorName + "doFirst=====================================================================================================" + preFlavorName)
+                        project.tinkerPatch.oldApk = bakApkPath + getTinkerApkName() + preFlavorName + "_release.apk"
                         project.tinkerPatch.buildConfig.applyMapping = name + "-release-mapping.txt"
                         project.tinkerPatch.buildConfig.applyResourceMapping = name + "-release-R.txt"
                     }
