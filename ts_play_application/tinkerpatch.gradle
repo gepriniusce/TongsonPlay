@@ -181,23 +181,29 @@ tinkerPatch {
      */
     project.afterEvaluate {
         //sample use for build all flavor for one time
-        if (hasFlavors && tinkerEnable) {
+        if (hasFlavors) {
             //          release版本的task
             task(tinkerPatchAllFlavorRelease) {
                 group = 'tinker'
                 def originOldPath = getTinkerBuildFlavorDirectory()
                 for (String flavor : flavors) {
                     def tinkerTask = tasks.getByName("tinkerPatch${flavor.capitalize()}Release")
-                    dependsOn tinkerTask
+                    println(flavor+"====================================================================================================="+tinkerTask)
                     def preAssembleTask = tasks.getByName("process${flavor.capitalize()}ReleaseManifest")
+                    println(flavor+"====================================================================================================="+preAssembleTask)
+                    String flavorName = flavor.substring(getSameStringCount())
+
                     preAssembleTask.doFirst {
-                        String flavorName = flavor.substring(getSameStringCount(), flavor.length())
-                        def bakApkPath = "${originOldPath}/${flavor}/"
-                        def name = bakApkPath + "${project.name}-${flavor}"
+                        println("doFirst=====================================================================================================")
+                        def bakApkPath = "${originOldPath}/${flavorName}/"
+                        def name = bakApkPath + "${project.name}-${flavorName}"
+                        println(flavorName+"doFirst====================================================================================================="+flavorName)
+
                         project.tinkerPatch.oldApk = bakApkPath + getTinkerApkName() + flavorName + "_release.apk"
                         project.tinkerPatch.buildConfig.applyMapping = name + "-release-mapping.txt"
                         project.tinkerPatch.buildConfig.applyResourceMapping = name + "-release-R.txt"
                     }
+                    dependsOn tinkerTask
 
                 }
             }
