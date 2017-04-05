@@ -2,7 +2,7 @@ package pr.tongson.pluginmodule;
 
 import android.app.Application;
 
-import pr.tongson.pluginmodule.type.TongsonTextView;
+import pr.tongson.pluginmodule.widght.TongsonTextView;
 
 /**
  * <b>Project:</b> ${file_name}<br>

@@ -1,4 +1,4 @@
-package pr.tongson.pluginmodule.type;
+package pr.tongson.pluginmodule.widght;
 
 import android.content.Context;
 import android.graphics.Typeface;

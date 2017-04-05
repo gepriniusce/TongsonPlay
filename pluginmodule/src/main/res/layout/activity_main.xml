@@ -24,11 +24,15 @@
         a666:unableBackgroundColor="@color/colorPrimary"
         a666:unableTextColor="@android:color/holo_orange_dark"/>
 
-    <pr.tongson.pluginmodule.type.TongsonTextView
+    <pr.tongson.pluginmodule.widght.TongsonTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="彼采葛兮，一日不见，如三月兮！彼采萧兮，一日不见，如三秋 兮！ 彼采艾兮，一日不见，如三岁兮！"/>
 
 
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
