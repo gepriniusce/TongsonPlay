@@ -2,7 +2,7 @@ package pr.tongson.pluginmodule;
 
 import android.app.Application;
 
-import static pr.tongson.pluginmodule.type.TTFUtils.loadTtf;
+import pr.tongson.pluginmodule.type.TongsonTextView;
 
 /**
  * <b>Project:</b> ${file_name}<br>
@@ -16,7 +16,7 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        loadTtf(getApplicationContext());
+        TongsonTextView.loadTtf(getApplicationContext());
 
     }
 }
