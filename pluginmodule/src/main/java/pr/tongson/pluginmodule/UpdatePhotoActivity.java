@@ -15,9 +15,7 @@ import android.widget.Toast;
 
 import java.io.File;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
+
 import pr.tongson.pluginmodule.dialog.TongsonGetPhotoDialog;
 import pr.tongson.pluginmodule.utils.CropUtils;
 
@@ -164,10 +162,7 @@ public class UpdatePhotoActivity extends AppCompatActivity {
                 
             }
         }
-        //参数类型
-        private  final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
-        //创建OkHttpClient实例
-        private final OkHttpClient client = new OkHttpClient();
-        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+//
+// MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
     }
 }
