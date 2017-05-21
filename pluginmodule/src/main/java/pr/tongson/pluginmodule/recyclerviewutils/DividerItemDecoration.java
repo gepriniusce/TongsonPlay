@@ -13,11 +13,17 @@ import android.support.v7.widget.RecyclerView.LayoutParams;
 import android.support.v7.widget.RecyclerView.State;
 import android.view.View;
 
+/**
+ * <b>Project:</b> ${file_name}<br>
+ * <b>Create Date:</b> 2017/3/19<br>
+ * <b>Author:</b> Tongson<br>
+ * <b>Description:</b> RecyclerViewList的Divider<br>
+ */
 public class DividerItemDecoration extends ItemDecoration {
 
     private int mOrientation = LinearLayoutManager.VERTICAL;
     private Drawable mDivider;
-    private int[] attrs= new int[]{
+    private int[] attrs = new int[]{
             android.R.attr.listDivider
     };
 
@@ -28,8 +34,8 @@ public class DividerItemDecoration extends ItemDecoration {
         setOrientation(orientation);
     }
 
-    public void setOrientation(int orientation){
-        if(orientation!=LinearLayoutManager.HORIZONTAL&&orientation!=LinearLayoutManager.VERTICAL){
+    public void setOrientation(int orientation) {
+        if (orientation != LinearLayoutManager.HORIZONTAL && orientation != LinearLayoutManager.VERTICAL) {
             throw new IllegalArgumentException("哥们,逗我ma?非水平和线性的枚举类型");
         }
         this.mOrientation = orientation;
@@ -38,10 +44,10 @@ public class DividerItemDecoration extends ItemDecoration {
     @Override
     public void onDraw(Canvas c, RecyclerView parent, State state) {
         //2。调用这个绘制方法， RecyclerView会毁掉该绘制方法,需要你自己去绘制条目的间隔线
-        if(mOrientation == LinearLayoutManager.VERTICAL){//垂直
-            drawVertical(c,parent);
-        }else{//水平
-            drawHorizontal(c,parent);
+        if (mOrientation == LinearLayoutManager.VERTICAL) {//垂直
+            drawVertical(c, parent);
+        } else {//水平
+            drawHorizontal(c, parent);
         }
 
         super.onDraw(c, parent, state);
@@ -51,13 +57,13 @@ public class DividerItemDecoration extends ItemDecoration {
         int top = parent.getPaddingTop();
         int bottom = parent.getHeight() - parent.getPaddingBottom();
         int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount ; i++) {
+        for (int i = 0; i < childCount; i++) {
             View child = parent.getChildAt(i);
 
             RecyclerView.LayoutParams params = (LayoutParams) child.getLayoutParams();
             int left = child.getRight() + params.rightMargin + Math.round(ViewCompat.getTranslationX(child));
             int right = left + mDivider.getIntrinsicHeight();
-            mDivider.setBounds(left, top , right, bottom);
+            mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
         }
     }
@@ -67,26 +73,25 @@ public class DividerItemDecoration extends ItemDecoration {
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
         int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount ; i++) {
+        for (int i = 0; i < childCount; i++) {
             View child = parent.getChildAt(i);
 
             RecyclerView.LayoutParams params = (LayoutParams) child.getLayoutParams();
             int top = child.getBottom() + params.bottomMargin + Math.round(ViewCompat.getTranslationY(child));
             int bottom = top + mDivider.getIntrinsicHeight();
-            mDivider.setBounds(left, top , right, bottom);
+            mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
         }
     }
 
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
-                               State state) {
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, State state) {
         //1.调用此方法（首先会先获取条目之间的间隙宽度---Rect矩形区域）
         // 获得条目的偏移量(所有的条目都回调用一次该方法)
-        if(mOrientation == LinearLayoutManager.VERTICAL){//垂直
+        if (mOrientation == LinearLayoutManager.VERTICAL) {//垂直
             outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
-        }else{//水平
-            outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0 );
+        } else {//水平
+            outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
         }
 
     }

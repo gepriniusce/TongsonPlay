@@ -29,9 +29,9 @@
         android:layout_height="wrap_content"
         android:text="彼采葛兮，一日不见，如三月兮！彼采萧兮，一日不见，如三秋 兮！ 彼采艾兮，一日不见，如三岁兮！" />
 
-    <android.support.v7.widget.RecyclerView
+    <pr.tongson.pluginmodule.recyclerviewutils.WrapRecyclerView
         android:id="@+id/recylerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

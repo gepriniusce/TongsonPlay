@@ -7,7 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-
+/**
+ * <b>Project:</b> ${file_name}<br>
+ * <b>Create Date:</b> 2017/3/19<br>
+ * <b>Author:</b> Tongson<br>
+ * <b>Description:</b> RecyclerViewGrid的Divider<br>
+ */
 public class HeaderViewRecyclerAdapter extends Adapter {
     private Adapter mAdapter;
 
@@ -45,7 +50,7 @@ public class HeaderViewRecyclerAdapter extends Adapter {
         //也要划分三个区域
         int numHeaders = getHeadersCount();
         if (position < numHeaders) {//是头部
-            return ;
+            return;
         }
         //adapter body
         final int adjPosition = position - numHeaders;
@@ -54,7 +59,7 @@ public class HeaderViewRecyclerAdapter extends Adapter {
             adapterCount = mAdapter.getItemCount();
             if (adjPosition < adapterCount) {
                 mAdapter.onBindViewHolder(holder, adjPosition);
-                return ;
+                return;
             }
         }
         //footer
@@ -78,15 +83,15 @@ public class HeaderViewRecyclerAdapter extends Adapter {
             }
         }
         //footer部分
-        return RecyclerView.INVALID_TYPE-1;
+        return RecyclerView.INVALID_TYPE - 1;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //header
-        if(viewType==RecyclerView.INVALID_TYPE){
+        if (viewType == RecyclerView.INVALID_TYPE) {
             return new HeaderViewHolder(mHeaderViewInfos.get(0));
-        }else if(viewType==RecyclerView.INVALID_TYPE-1){//footer
+        } else if (viewType == RecyclerView.INVALID_TYPE - 1) {//footer
             return new HeaderViewHolder(mFooterViewInfos.get(0));
         }
         // Footer (off-limits positions will throw an IndexOutOfBoundsException)
@@ -101,7 +106,7 @@ public class HeaderViewRecyclerAdapter extends Adapter {
         return mFooterViewInfos.size();
     }
 
-    private static class HeaderViewHolder extends ViewHolder{
+    private static class HeaderViewHolder extends ViewHolder {
 
         public HeaderViewHolder(View view) {
             super(view);

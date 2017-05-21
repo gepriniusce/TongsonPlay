@@ -13,6 +13,12 @@ import android.support.v7.widget.RecyclerView.LayoutParams;
 import android.support.v7.widget.RecyclerView.State;
 import android.view.View;
 
+/**
+ * <b>Project:</b> ${file_name}<br>
+ * <b>Create Date:</b> 2017/3/19<br>
+ * <b>Author:</b> Tongson<br>
+ * <b>Description:</b> RecyclerViewGrid的Divider<br>
+ */
 public class DividerGridViewItemDecoration extends ItemDecoration {
 
     private Drawable mDivider;
