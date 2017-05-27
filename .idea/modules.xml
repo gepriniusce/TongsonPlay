@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/TongsonPlay.iml" filepath="$PROJECT_DIR$/TongsonPlay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tongsonimitate/tongsonimitate.iml" filepath="$PROJECT_DIR$/tongsonimitate/tongsonimitate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tongsonrx/tongsonrx.iml" filepath="$PROJECT_DIR$/tongsonrx/tongsonrx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tongsonrx2/tongsonrx2.iml" filepath="$PROJECT_DIR$/tongsonrx2/tongsonrx2.iml" />
+    </modules>
+  </component>
+</project>
