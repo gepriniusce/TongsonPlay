@@ -1,6 +1,10 @@
 package com.example.tongsonimitate.demo;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.example.tongsonimitate.demo.i.OnSubscrible;
+import com.example.tongsonimitate.demo.i.Func;
 
 /**
  * <b>Project:</b> ${file_name}<br>
@@ -43,5 +47,22 @@ public class Observable<T> {
         onSubscrible.call(subscriber);
     }
 
+    public <R> Observable<R> map(Func<? super T,? extends R> func)
+    {
+        return lift(new OperatorMap<>(func));
+    }
+
+    public  <R> Observable<R> lift(OperatorMap<T, R> trOperatorMap) {
+        return new Observable<>(new OnSubscribleLift<>(onSubscrible,trOperatorMap));
+    }
+
+    public  Observable<T> subscribleOnIO()
+    {
+        return create(new OnSubscribleOnIO<T>(this));
+    }
+    public Observable<T> subscribleMain()
+    {
+        return  create(new OnSubscrbleMain<T>(new Handler(Looper.getMainLooper()),this));
+    }
 
 }
