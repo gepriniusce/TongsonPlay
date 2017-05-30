@@ -9,13 +9,13 @@ import com.example.tongsonimitate.demo.i.Operator;
  * <b>Author:</b> Tongson<br>
  * <b>Description:</b> <br>
  */
-public class OnSubscribleLift<T,R> implements OnSubscrible<R> {
+public class OnSubscribleImpl<T,R> implements OnSubscrible<R> {
 
 
     OnSubscrible<T> onSubscrible;
     Operator<? extends R,? super T> operator;
 
-    public OnSubscribleLift(OnSubscrible<T> onSubscrible, Operator<? extends R, ? super T> operator) {
+    public OnSubscribleImpl(OnSubscrible<T> onSubscrible, Operator<? extends R, ? super T> operator) {
         this.onSubscrible = onSubscrible;
         this.operator = operator;
     }

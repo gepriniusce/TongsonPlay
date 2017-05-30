@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //具体的转换类型角色
                     @Override
                     public Bitmap call(String s) {
-                        spannableStringBuilder.append("map-->OnSubscribleLift call:" + "s:" + s + "\n");
-                        spannableStringBuilder.append("map-->OnSubscribleLift call:" + "currentThread:" + Thread.currentThread().getName() + "\n");
+                        spannableStringBuilder.append("map-->OnSubscribleImpl call:" + "s:" + s + "\n");
+                        spannableStringBuilder.append("map-->OnSubscribleImpl call:" + "currentThread:" + Thread.currentThread().getName() + "\n");
                         Bitmap bitmap = BitmapFactory.decodeResource(MainActivity.this.getResources(), R.mipmap.ic_launcher);
                         return bitmap;
                     }
@@ -120,8 +120,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //具体的转换类型角色
                     @Override
                     public Bitmap call(String s) {
-                        spannableStringBuilder.append("map-->OnSubscribleLift call:" + "s:" + s + "\n");
-                        spannableStringBuilder.append("map-->OnSubscribleLift call:" + "currentThread:" + Thread.currentThread().getName() + "\n");
+                        spannableStringBuilder.append("map-->OnSubscribleImpl call:" + "s:" + s + "\n");
+                        spannableStringBuilder.append("map-->OnSubscribleImpl call:" + "currentThread:" + Thread.currentThread().getName() + "\n");
                         Bitmap bitmap = BitmapFactory.decodeResource(MainActivity.this.getResources(), R.mipmap.ic_launcher);
                         return bitmap;
                     }

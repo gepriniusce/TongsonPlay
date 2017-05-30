@@ -53,7 +53,7 @@ public class Observable<T> {
     }
 
     public  <R> Observable<R> lift(OperatorMap<T, R> trOperatorMap) {
-        return new Observable<>(new OnSubscribleLift<>(onSubscrible,trOperatorMap));
+        return new Observable<>(new OnSubscribleImpl<>(onSubscrible,trOperatorMap));
     }
 
     public  Observable<T> subscribleOnIO()
