@@ -11,10 +11,9 @@ import java.util.concurrent.Executors;
  * <b>Author:</b> Tongson<br>
  * <b>Description:</b> 线程切换中间类 <br>
  */
-
 public class OnSubscribleOnIO <T> implements OnSubscrible<T> {
-    private static ExecutorService executorService= Executors.newCachedThreadPool();
 
+    private static ExecutorService executorService= Executors.newCachedThreadPool();
     private Observable<T> source;
 
     public OnSubscribleOnIO(Observable<T> tObservable) {

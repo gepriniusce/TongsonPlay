@@ -12,6 +12,7 @@ import com.example.tongsonimitate.demo.i.OnSubscrible;
  */
 
 public class OnSubscrbleMain<T> implements OnSubscrible<T> {
+
     private Handler handler;
     private Observable<T> source;
 
