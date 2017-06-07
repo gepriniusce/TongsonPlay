@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 resultTv.setText(spannableStringBuilder);
                 break;
             case R.id.btn_2:
+                /**
+                 * 响应式编程
+                 */
                 spannableStringBuilder.append("btn_2-------------------\n");
                 Observable.create(new OnSubscrible<String>() {
                     @Override

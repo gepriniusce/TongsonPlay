@@ -47,22 +47,35 @@ public class Observable<T> {
         onSubscrible.call(subscriber);
     }
 
-    public <R> Observable<R> map(Func<? super T,? extends R> func)
-    {
+    /**
+     * 场所
+     * 实例化 交换操纵者
+     *
+     * @param func
+     * @param <R>
+     * @return
+     */
+    public <R> Observable<R> map(Func<? super T, ? extends R> func) {
         return lift(new OperatorMap<>(func));
     }
 
-    public  <R> Observable<R> lift(OperatorMap<T, R> trOperatorMap) {
-        return new Observable<>(new OnSubscribleImpl<>(onSubscrible,trOperatorMap));
+    /**
+     * 实例化 对象交换着
+     *
+     * @param trOperatorMap
+     * @param <R>
+     * @return
+     */
+    public <R> Observable<R> lift(OperatorMap<T, R> trOperatorMap) {
+        return new Observable<>(new OnSubscribleImpl<>(onSubscrible, trOperatorMap));
     }
 
-    public  Observable<T> subscribleOnIO()
-    {
+    public Observable<T> subscribleOnIO() {
         return create(new OnSubscribleOnIO<T>(this));
     }
-    public Observable<T> subscribleMain()
-    {
-        return  create(new OnSubscrbleMain<T>(new Handler(Looper.getMainLooper()),this));
+
+    public Observable<T> subscribleMain() {
+        return create(new OnSubscrbleMain<T>(new Handler(Looper.getMainLooper()), this));
     }
 
 }

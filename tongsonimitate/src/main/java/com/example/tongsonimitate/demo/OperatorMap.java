@@ -7,7 +7,7 @@ import com.example.tongsonimitate.demo.i.Operator;
  * <b>Project:</b> ${file_name}<br>
  * <b>Create Date:</b> 2017/5/27<br>
  * <b>Author:</b> Tongson<br>
- * <b>Description:</b>操纵者<br>
+ * <b>Description:</b> 交换操纵者 <br>
  */
 public class OperatorMap<T, R> implements Operator<R, T> {
 
@@ -19,6 +19,9 @@ public class OperatorMap<T, R> implements Operator<R, T> {
 
     @Override
     public Subscriber<? super T> call(Subscriber<? super R> subscriber) {
+        /**
+         * 返回 Subscriber<? super T> 对象
+         */
         return new MapSubscriber<>(subscriber, transformer);
     }
 
