@@ -7,7 +7,7 @@ import com.example.tongsonimitate.demo.i.Operator;
  * <b>Project:</b> ${file_name}<br>
  * <b>Create Date:</b> 2017/5/29<br>
  * <b>Author:</b> Tongson<br>
- * <b>Description:</b> 对象交换着 <br>
+ * <b>Description:</b> OnSubscrible对象交换者 供subscrible(Subscriber<? super T> subscriber)调用 <br>
  */
 public class OnSubscribleImpl<T, R> implements OnSubscrible<R> {
 

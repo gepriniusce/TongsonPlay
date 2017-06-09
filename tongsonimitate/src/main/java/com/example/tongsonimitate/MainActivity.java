@@ -80,64 +80,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Observable.create(new OnSubscrible<String>() {
                     @Override
                     public void call(Subscriber<? super String> subscriber) {
-                        spannableStringBuilder.append("Observable -->Subscriber call:" + "1" + "\n");
-                        spannableStringBuilder.append("Observable -->Subscriber call:" + "1 ，currentThread:" + Thread.currentThread().getName() + "\n");
-
+                        spannableStringBuilder.append("Observable -->Subscriber call:1" + "\n" + "currentThread:" + Thread.currentThread().getName() + "\n");
                         subscriber.onNext("http://www.baidu.com");
-                        spannableStringBuilder.append("Observable -->Subscriber call:" + "5" + "\n");
-                        spannableStringBuilder.append("Observable -->Subscriber call:" + "5 ，currentThread:" + Thread.currentThread().getName() + "\n");
+                        spannableStringBuilder.append("Observable -->Subscriber call:5" + "\n" + "currentThread:" + Thread.currentThread().getName() + "\n");
                     }
                 }).map(new Func<String, Bitmap>() {
                     //具体的转换类型角色
                     @Override
                     public Bitmap call(String s) {
                         spannableStringBuilder.append("map-->OnSubscribleImpl call:" + "s:" + s + "\n");
-                        spannableStringBuilder.append("map-->OnSubscribleImpl call:" + "currentThread:" + Thread.currentThread().getName() + "\n");
+                        spannableStringBuilder.append("currentThread:" + Thread.currentThread().getName() + "\n");
                         Bitmap bitmap = BitmapFactory.decodeResource(MainActivity.this.getResources(), R.mipmap.ic_launcher);
                         return bitmap;
                     }
                 }).subscrible(new Subscriber<Bitmap>() {
                     @Override
                     public void onNext(Bitmap bitmap) {
-                        spannableStringBuilder.append("Subscriber onNext -->" + "\n");
-                        spannableStringBuilder.append("Subscriber onNext -->" + "currentThread:" + Thread.currentThread().getName() + "\n");
-
+                        spannableStringBuilder.append("Subscriber onNext -->" + "\n" + "currentThread:" + Thread.currentThread().getName() + "\n");
                     }
                 });
-                spannableStringBuilder.append("-------------------\n\n");
+                spannableStringBuilder.append("btn_2-------------------\n\n");
                 resultTv.setText(spannableStringBuilder);
                 break;
             case R.id.btn_3:
-                spannableStringBuilder.append("btn_3-------------------\n");
+                /**
+                 * 响应式编程
+                 */
                 Observable.create(new OnSubscrible<String>() {
                     @Override
                     public void call(Subscriber<? super String> subscriber) {
-                        spannableStringBuilder.append("Observable -->Subscriber call:" + "1" + "\n");
-                        spannableStringBuilder.append("Observable -->Subscriber call:" + "1 ，currentThread:" + Thread.currentThread().getName() + "\n");
+                        spannableStringBuilder.append("Observable -->Subscriber call:1" + "\n" + "currentThread:" + Thread.currentThread().getName() + "\n");
 
                         subscriber.onNext("http://www.baidu.com");
-                        spannableStringBuilder.append("Observable -->Subscriber call:" + "5" + "\n");
-                        spannableStringBuilder.append("Observable -->Subscriber call:" + "5 ，currentThread:" + Thread.currentThread().getName() + "\n");
+                        spannableStringBuilder.append("Observable -->Subscriber call:5" + "\n" + "currentThread:" + Thread.currentThread().getName() + "\n");
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                resultTv.setText(spannableStringBuilder);
+                            }
+                        });
                     }
-                }).subscribleMain().map(new Func<String, Bitmap>() {
+                }).subscribleOnIO().map(new Func<String, Bitmap>() {
                     //具体的转换类型角色
                     @Override
                     public Bitmap call(String s) {
                         spannableStringBuilder.append("map-->OnSubscribleImpl call:" + "s:" + s + "\n");
-                        spannableStringBuilder.append("map-->OnSubscribleImpl call:" + "currentThread:" + Thread.currentThread().getName() + "\n");
+                        spannableStringBuilder.append("currentThread:" + Thread.currentThread().getName() + "\n");
                         Bitmap bitmap = BitmapFactory.decodeResource(MainActivity.this.getResources(), R.mipmap.ic_launcher);
                         return bitmap;
                     }
                 }).subscrible(new Subscriber<Bitmap>() {
                     @Override
                     public void onNext(Bitmap bitmap) {
-                        spannableStringBuilder.append("Subscriber onNext -->" + "\n");
-                        spannableStringBuilder.append("Subscriber onNext -->" + "currentThread:" + Thread.currentThread().getName() + "\n");
-
+                        spannableStringBuilder.append("Subscriber onNext -->" + "\n" + "currentThread:" + Thread.currentThread().getName() + "\n");
                     }
                 });
-                spannableStringBuilder.append("-------------------\n\n");
-                resultTv.setText(spannableStringBuilder);
+
                 break;
             case R.id.btn_clean:
                 spannableStringBuilder.clear();

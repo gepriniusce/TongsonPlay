@@ -12,7 +12,6 @@ import com.example.tongsonimitate.demo.i.Func;
  * <b>Author:</b> Tongson<br>
  * <b>Description:</b> 被观察者 <br>
  */
-
 public class Observable<T> {
 
     /**
@@ -31,6 +30,8 @@ public class Observable<T> {
 
 
     /**
+     * 开始
+     *
      * @param onSubscrible
      * @param <T>
      * @return
@@ -41,6 +42,8 @@ public class Observable<T> {
 
 
     /**
+     * 订阅
+     *
      * @param subscriber
      */
     public void subscrible(Subscriber<? super T> subscriber) {
@@ -49,7 +52,7 @@ public class Observable<T> {
 
     /**
      * 场所
-     * 实例化 交换操纵者
+     * 实例化 交换者
      *
      * @param func
      * @param <R>
@@ -60,7 +63,7 @@ public class Observable<T> {
     }
 
     /**
-     * 实例化 对象交换着
+     * 实例化 对象交换者
      *
      * @param trOperatorMap
      * @param <R>
