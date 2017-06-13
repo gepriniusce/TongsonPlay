@@ -8,7 +8,7 @@ import com.example.tongsonimitate.demo.i.OnSubscrible;
  * <b>Project:</b> ${file_name}<br>
  * <b>Create Date:</b> 2017/5/29<br>
  * <b>Author:</b> Tongson<br>
- * <b>Description:</b> <br>
+ * <b>Description:</b> 线程切换中间类 <br>
  */
 
 public class OnSubscrbleMain<T> implements OnSubscrible<T> {
