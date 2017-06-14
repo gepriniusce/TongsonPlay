@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_2:
                 /**
+                 * 响应式编程
+                 */
+                /**
                  * String  类型  代表需求
                  * Bitmap  代表 功能
                  * new OnSubscrible  产品
@@ -107,7 +110,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_3:
                 /**
-                 * 响应式编程
+                 * String  类型  代表需求
+                 * Bitmap  代表 功能
+                 * new OnSubscrible  产品
                  */
                 Observable.create(new OnSubscrible<String>() {
                     @Override
@@ -125,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }).subscribleOnIO().map(new Func<String, Bitmap>() {
                     //具体的转换类型角色
+                    //老大让产品提需求给技术去做功能
                     @Override
                     public Bitmap call(String s) {
                         spannableStringBuilder.append("map-->OnSubscribleImpl call:" + "s:" + s + "\n");

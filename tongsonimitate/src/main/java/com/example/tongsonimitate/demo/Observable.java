@@ -51,7 +51,7 @@ public class Observable<T> {
     }
 
     /**
-     * 场所
+     * 实例化 项目组
      * 实例化 交换者
      *
      * @param func
@@ -63,6 +63,7 @@ public class Observable<T> {
     }
 
     /**
+     * 实例化 老大
      * 实例化 对象交换者
      *
      * @param trOperatorMap

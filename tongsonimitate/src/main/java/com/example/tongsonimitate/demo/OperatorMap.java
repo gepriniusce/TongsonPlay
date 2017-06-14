@@ -7,7 +7,7 @@ import com.example.tongsonimitate.demo.i.Operator;
  * <b>Project:</b> ${file_name}<br>
  * <b>Create Date:</b> 2017/5/27<br>
  * <b>Author:</b> Tongson<br>
- * <b>Description:</b> 方法交换操纵者 项目组 具体的观察者-->具体的产品<br>
+ * <b>Description:</b> 方法交换操纵者 项目组 具体的观察者-->具体的项目组<br>
  * 项目组
  * T  需求
  * R  功能
