@@ -8,12 +8,12 @@ import com.example.tongsonimitate.demo.i.Operator;
  * <b>Create Date:</b> 2017/5/29<br>
  * <b>Author:</b> Tongson<br>
  * <b>Description:</b> ObservableDistinctUntilChanged  OnSubscrible对象交换者 供subscrible(Subscriber<? super T> subscriber)调用 <br>
- * <b>Description:</b>  老大 <br>
+ * <b>Description:</b>  技术的老大 <br>
  */
 public class OnSubscribleImpl<T, R> implements OnSubscrible<R> {
 
     /**
-     * 产品的老大
+     * 产品
      */
     OnSubscrible<T> onSubscrible;
 
@@ -34,7 +34,7 @@ public class OnSubscribleImpl<T, R> implements OnSubscrible<R> {
     /**
      * 外部调用
      * 让交换操纵者 返回Subscriber<? super T> tSubscriber
-     * 老大让产品提需求给技术去做功能
+     * 老大  让产品提需求给技术去做功能
      *
      * @param subscriber
      */
@@ -46,7 +46,7 @@ public class OnSubscribleImpl<T, R> implements OnSubscrible<R> {
          */
         Subscriber<? super T> tSubscriber = operator.call(subscriber);
         /**
-         * 老大直接把产品交给技术
+         * 老大 直接把产品分派给技术
          */
         onSubscrible.call(tSubscriber);
     }
