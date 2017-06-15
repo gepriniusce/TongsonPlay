@@ -8,4 +8,10 @@ package pr.tongson.mvp;
  */
 
 public class TongsonApplication extends android.app.Application{
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+    }
 }
