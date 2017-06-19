@@ -8,7 +8,7 @@ import android.util.Log;
 import pr.tongson.service.MyService;
 
 public class MyReceiver extends BroadcastReceiver {
-    public static final String TAG = "MyReceiver";
+    public static final String TAG = "Tongson MyReceiver";
 
     public MyReceiver() {
     }

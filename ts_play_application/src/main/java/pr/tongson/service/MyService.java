@@ -6,7 +6,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class MyService extends Service {
-    public static final String TAG = "MyService";
+    public static final String TAG = "Tongson MyService";
 
 
     public MyService() {
