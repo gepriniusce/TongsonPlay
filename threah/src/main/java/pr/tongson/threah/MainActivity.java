@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button HandlerThreadBtn;
     Button LooperThreadBtn;
     Button AsyncTaskThreadBtn;
+    Button JavaThreadThreadBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +23,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         HandlerThreadBtn = (Button) findViewById(R.id.Handler_thread_btn);
         LooperThreadBtn = (Button) findViewById(R.id.Looper_thread_btn);
         AsyncTaskThreadBtn = (Button) findViewById(R.id.AsyncTask_thread_btn);
+        JavaThreadThreadBtn = (Button) findViewById(R.id.JavaThread_thread_btn);
         mainThreadBtn.setOnClickListener(this);
         childThreadBtn.setOnClickListener(this);
         HandlerThreadBtn.setOnClickListener(this);
         LooperThreadBtn.setOnClickListener(this);
         AsyncTaskThreadBtn.setOnClickListener(this);
+        JavaThreadThreadBtn.setOnClickListener(this);
 
     }
 
@@ -52,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.AsyncTask_thread_btn:
                 intent.setClass(this, AsyncTaskActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.JavaThread_thread_btn:
+                intent.setClass(this, JavaThreadActivity.class);
                 startActivity(intent);
                 break;
         }

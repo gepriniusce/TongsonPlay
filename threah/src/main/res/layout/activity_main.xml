@@ -46,4 +46,10 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:text="AsyncTask"/>
+    <Button
+        android:id="@+id/JavaThread_thread_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:text="JavaThread"/>
 </LinearLayout>
