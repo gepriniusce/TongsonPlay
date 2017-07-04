@@ -15,12 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainThreadActivity"></activity>
-        <activity android:name=".ChildThreadActivity"></activity>
-        <activity android:name=".HandlerActivity"></activity>
-        <activity android:name=".LooperActivity"></activity>
-        <activity android:name=".AsyncTaskActivity"></activity>
-        <activity android:name=".JavaThreadActivity"></activity>
+        <activity android:name=".MainThreadActivity" />
+        <activity android:name=".ChildThreadActivity" />
+        <activity android:name=".HandlerActivity" />
+        <activity android:name=".LooperActivity" />
+        <activity android:name=".AsyncTaskActivity" />
+        <activity android:name=".JavaThreadActivity" />
+        <activity android:name=".AsyncTask2Activity" />
+        <activity android:name=".FutureTaskActivity" />
+        <activity android:name=".AsyncTask3Activity"></activity>
     </application>
 
 </manifest>

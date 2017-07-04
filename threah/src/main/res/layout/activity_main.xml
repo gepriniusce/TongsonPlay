@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/activity_main"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -17,39 +16,61 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:text="主线程"/>
+        android:text="主线程" />
 
     <Button
         android:id="@+id/child_thread_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:text="子线程"/>
+        android:text="子线程" />
 
     <Button
         android:id="@+id/Handler_thread_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:text="Handler"/>
+        android:text="Handler" />
 
     <Button
         android:id="@+id/Looper_thread_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:text="Looper"/>
+        android:text="Looper" />
 
     <Button
         android:id="@+id/AsyncTask_thread_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:text="AsyncTask"/>
+        android:text="AsyncTask" />
+
     <Button
         android:id="@+id/JavaThread_thread_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:text="JavaThread"/>
+        android:text="JavaThread" />
+
+    <Button
+        android:id="@+id/FutureTask_thread_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:text="FutureTask" />
+
+    <Button
+        android:id="@+id/AsyncTask2_thread_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:text="AsyncTask中的ThreadPoolExecutor" />
+
+    <Button
+        android:id="@+id/AsyncTask3_thread_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:text="AsyncTask中的cancel" />
 </LinearLayout>

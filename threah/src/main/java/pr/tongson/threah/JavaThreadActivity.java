@@ -1,7 +1,7 @@
 package pr.tongson.threah;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 public class JavaThreadActivity extends AppCompatActivity {
@@ -12,7 +12,6 @@ public class JavaThreadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java_thread);
         Object lock = new Object();
         new Producer(lock).start();
-
         new Consumer(lock).start();
     }
 
