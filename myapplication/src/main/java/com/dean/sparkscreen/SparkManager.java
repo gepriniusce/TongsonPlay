@@ -1,18 +1,17 @@
 package com.dean.sparkscreen;
 
-import java.util.Random;
-
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 
+import java.util.Random;
+
 /**
  * @author Dean Guo
  **/
-public class SparkManager
-{
+public class SparkManager {
 
     // 画笔对象
     private Paint mSparkPaint;
@@ -47,14 +46,12 @@ public class SparkManager
     // 是否是激活状态
     public boolean isActive = false;
 
-    public SparkManager()
-    {
+    public SparkManager() {
         // 初始化画笔
         setSparkPaint();
     }
 
-    public int[] drawSpark( Canvas canvas, int x, int y, int[] store )
-    {
+    public int[] drawSpark(Canvas canvas, int x, int y, int[] store) {
 
         this.X = x;
         this.Y = y;
@@ -62,8 +59,7 @@ public class SparkManager
         this.mDistance = store[1];
 
         // 初始化火花
-        if (mCurDistance == mDistance && isActive)
-        {
+        if (mCurDistance == mDistance && isActive) {
             mDistance = getRandom(SparkView.WIDTH / 4, mRandom.nextInt(15)) + 1;
             mCurDistance = 0;
 
@@ -73,8 +69,7 @@ public class SparkManager
             c2 = getRandomPoint(end.x, end.y, mRandom.nextInt(SparkView.WIDTH / 16));
         }
         // 恢复火花路径
-        else
-        {
+        else {
             start.set(store[2], store[3]);
             end.set(store[4], store[5]);
             c1.set(store[6], store[7]);
@@ -90,16 +85,14 @@ public class SparkManager
         // 画花火
         canvas.drawCircle(bezierPoint.x, bezierPoint.y, radius, mSparkPaint);
 
-        
+
         // 重置火花状态
-        if (mCurDistance == mDistance)
-        {
+        if (mCurDistance == mDistance) {
             store[0] = 0;
             store[1] = 0;
         }
         // 保持花火的状态
-        else
-        {
+        else {
             store[0] = (int) mCurDistance;
             store[1] = (int) mDistance;
             store[2] = (int) start.x;
@@ -111,29 +104,25 @@ public class SparkManager
             store[8] = (int) c2.x;
             store[9] = (int) c2.y;
         }
-        
+
         return store;
     }
 
     /**
      * 更新火花路径
      */
-    private void updateSparkPath()
-    {
+    private void updateSparkPath() {
         mCurDistance += PER_SPEED_SEC;
         // 前半段
-        if (mCurDistance < (mDistance / 2) && (mCurDistance != 0))
-        {
+        if (mCurDistance < (mDistance / 2) && (mCurDistance != 0)) {
             radius = SPARK_RADIUS * (mCurDistance / (mDistance / 2));
         }
         // 后半段
-        else if (mCurDistance > (mDistance / 2) && (mCurDistance < mDistance))
-        {
+        else if (mCurDistance > (mDistance / 2) && (mCurDistance < mDistance)) {
             radius = SPARK_RADIUS - SPARK_RADIUS * ((mCurDistance / (mDistance / 2)) - 1);
         }
         // 完成
-        else if (mCurDistance >= mDistance)
-        {
+        else if (mCurDistance >= mDistance) {
             mCurDistance = 0;
             mDistance = 0;
             radius = 0;
@@ -143,10 +132,9 @@ public class SparkManager
     /**
      * 根据基准点获取指定范围为半径的随机点
      */
-    private Point getRandomPoint( int baseX, int baseY, int r )
-    {
-        if(r<=0){
-            r = 1 ;
+    private Point getRandomPoint(int baseX, int baseY, int r) {
+        if (r <= 0) {
+            r = 1;
         }
         int x = mRandom.nextInt(r);
         int y = (int) Math.sqrt(r * r - x * x);
@@ -160,17 +148,15 @@ public class SparkManager
     /**
      * 根据range范围，和chance几率。返回一个随机值
      */
-    private int getRandom( int range ,int chance)
-    {
+    private int getRandom(int range, int chance) {
         int num = 0;
-        switch (chance)
-        {
-        case 0:
-            num = mRandom.nextInt(range);
-            break;
-        default:
-            num = mRandom.nextInt(range / 4);
-            break;
+        switch (chance) {
+            case 0:
+                num = mRandom.nextInt(range);
+                break;
+            default:
+                num = mRandom.nextInt(range / 4);
+                break;
         }
 
         return num;
@@ -179,23 +165,21 @@ public class SparkManager
     /**
      * 获取随机正负数
      */
-    private int getRandomPNValue( int value )
-    {
+    private int getRandomPNValue(int value) {
         return mRandom.nextBoolean() ? value : 0 - value;
     }
 
     /**
      * 计算塞贝儿曲线
-     * 
-     * @param t 时间，范围0-1
-     * @param s 起始点
+     *
+     * @param t  时间，范围0-1
+     * @param s  起始点
      * @param c1 拐点1
      * @param c2 拐点2
-     * @param e 终点
+     * @param e  终点
      * @return 塞贝儿曲线在当前时间下的点
      */
-    private Point CalculateBezierPoint( float t, Point s, Point c1, Point c2, Point e )
-    {
+    private Point CalculateBezierPoint(float t, Point s, Point c1, Point c2, Point e) {
         float u = 1 - t;
         float tt = t * t;
         float uu = u * u;
@@ -216,8 +200,7 @@ public class SparkManager
     /**
      * 设置画笔
      */
-    private void setSparkPaint()
-    {
+    private void setSparkPaint() {
         this.mSparkPaint = new Paint();
         // 打开抗锯齿
         this.mSparkPaint.setAntiAlias(true);

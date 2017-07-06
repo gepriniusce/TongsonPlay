@@ -1,7 +1,5 @@
 package com.dean.sparkscreen;
 
-import java.util.Date;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -13,13 +11,12 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.Date;
+
 /**
  * @author Dean Guo
  **/
-public class SparkView
-    extends SurfaceView
-    implements SurfaceHolder.Callback, Runnable
-{
+public class SparkView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
     private SurfaceHolder mHolder;
 
@@ -35,8 +32,7 @@ public class SparkView
     // 屏幕宽高
     public static int WIDTH, HEIGHT;
 
-    public SparkView( Context context )
-    {
+    public SparkView(Context context) {
         super(context);
         // 关闭硬件加速
         setLayerType(LAYER_TYPE_SOFTWARE, null);
@@ -55,29 +51,23 @@ public class SparkView
     }
 
     @Override
-    public void run()
-    {
+    public void run() {
 
         // 火花数组
         int[][] sparks = new int[400][10];
 
         Date date = null;
-        while (isRun)
-        {
+        while (isRun) {
             date = new Date();
-            try
-            {
+            try {
                 mCanvas = mHolder.lockCanvas(null);
-                if (mCanvas != null)
-                {
-                    synchronized (mHolder)
-                    {
+                if (mCanvas != null) {
+                    synchronized (mHolder) {
                         // 清屏
                         mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 
                         // 循环绘制所有火花
-                        for (int[] n : sparks)
-                        {
+                        for (int[] n : sparks) {
                             n = sparkManager.drawSpark(mCanvas, (int) X, (int) Y, n);
                         }
 
@@ -85,15 +75,10 @@ public class SparkView
                         Thread.sleep(Math.max(0, 30 - (new Date().getTime() - date.getTime())));
                     }
                 }
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
-            }
-            finally
-            {
-                if (mCanvas != null)
-                {
+            } finally {
+                if (mCanvas != null) {
                     mHolder.unlockCanvasAndPost(mCanvas);
                 }
             }
@@ -102,27 +87,24 @@ public class SparkView
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
-    public boolean onTouchEvent( MotionEvent event )
-    {
-        switch (event.getPointerCount())
-        {
-        // 单点触摸
-        case 1:
-            switch (event.getAction())
-            {
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_MOVE:
-                sparkManager.isActive = true;
-                X = event.getX();
-                Y = event.getY();
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getPointerCount()) {
+            // 单点触摸
+            case 1:
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_MOVE:
+                        sparkManager.isActive = true;
+                        X = event.getX();
+                        Y = event.getY();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        sparkManager.isActive = false;
+                        break;
+                    default:
+                        break;
+                }
                 break;
-            case MotionEvent.ACTION_UP:
-                sparkManager.isActive = false;
-                break;
-            default:
-                break;
-            }
-            break;
         }
 
         return true;
@@ -130,28 +112,24 @@ public class SparkView
 
     // Surface的大小发生改变时调用
     @Override
-    public void surfaceChanged( SurfaceHolder holder, int format, int width, int height )
-    {
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         drawBackgound();
     }
 
     // Surface创建时激发，一般在这里调用画面的线程
     @Override
-    public void surfaceCreated( SurfaceHolder holder )
-    {
+    public void surfaceCreated(SurfaceHolder holder) {
         isRun = true;
         new Thread(this).start();
     }
 
     // 销毁时激发，一般在这里将画面的线程停止、释放。
     @Override
-    public void surfaceDestroyed( SurfaceHolder argholder0 )
-    {
+    public void surfaceDestroyed(SurfaceHolder argholder0) {
         isRun = false;
     }
 
-    private void drawBackgound()
-    {
+    private void drawBackgound() {
         mCanvas = mHolder.lockCanvas();
         mCanvas.drawColor(Color.BLACK);
         mHolder.unlockCanvasAndPost(mCanvas);

@@ -1,12 +1,9 @@
-package com.dean.sparkscreen;
+package pr.tongson;
 
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Activity;
 
-/**
- * @author Dean Guo
- **/
-public class MainActivity extends Activity {
+public class Main2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,5 +11,4 @@ public class MainActivity extends Activity {
         SparkView sparkView = new SparkView(this);
         setContentView(sparkView);
     }
-
 }
