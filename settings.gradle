@@ -1,1 +1,1 @@
-include ':ts_play_application'
+include ':ts_play_application', ':myapplication'
