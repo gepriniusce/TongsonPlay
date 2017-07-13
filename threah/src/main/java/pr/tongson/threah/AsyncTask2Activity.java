@@ -12,8 +12,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static android.R.attr.name;
-
 public class AsyncTask2Activity extends AppCompatActivity {
     public static final String TAG = "Tongson AsyncTask2Activity";
 
@@ -75,15 +73,7 @@ public class AsyncTask2Activity extends AppCompatActivity {
 
         @Override
         public void run() {
-            //            Log.i(TAG, Thread.currentThread().getName()+";i:"+i);
-            while (true) {
-                try {
-                    Log.i(TAG, Thread.currentThread().getName() + ";i:" + i);
-                    //Thread.sleep(1000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+            Log.i(TAG, Thread.currentThread().getName() + ";i:" + i);
         }
 
     }
