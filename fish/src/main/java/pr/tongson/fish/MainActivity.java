@@ -1,8 +1,10 @@
 package pr.tongson.fish;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+
+import com.tongson.fish.R;
 
 /**
  * http://www.jianshu.com/p/3dd3d1524851

@@ -1,7 +1,7 @@
 package pr.tongson.wave;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * http://www.jianshu.com/p/c8e70e045133
