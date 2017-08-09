@@ -1,1 +1,1 @@
-include ':ts_play_application', ':myapplication'
+include ':ts_play_application', ':sparkscreen', ':fish'
