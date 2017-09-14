@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
@@ -97,7 +96,7 @@ public class RenderingView extends View implements View.OnClickListener {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.i("Tongson", "Tongson onDraw mProgress:" + mProgress);
+//        Log.i("Tongson", "Tongson onDraw mProgress:" + mProgress);
         if (mInit && mCurBitmap != null) {
             mSrc.set(mBitmapRect.left, mBitmapRect.top, (int) (mBitmapRect.right * mProgress + 0.5f), mBitmapRect.bottom);
             mDst.set(mDrawableRectF.left, mDrawableRectF.top, mDrawableRectF.right * mProgress, mDrawableRectF.bottom);
@@ -108,7 +107,7 @@ public class RenderingView extends View implements View.OnClickListener {
             paintCircle.setStyle(Paint.Style.STROKE);
 
             canvas.drawBitmap(mCurBitmap, mSrc, mDst, mPaint);
-            canvas.drawArc(mDst, -90, 360* mProgress, false, paintCircle);
+            canvas.drawArc(mDst, -90, 360 * mProgress, false, paintCircle);
         }
     }
 
@@ -134,7 +133,7 @@ public class RenderingView extends View implements View.OnClickListener {
     public void setImageBitmap(Bitmap bitmap) {
         mCurBitmap = bitmap;
         if (mCurBitmap != null && mInit) {
-            //            setInformation();
+            setInformation();
         }
     }
 

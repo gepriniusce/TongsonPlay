@@ -12,10 +12,17 @@
               android:paddingTop="@dimen/activity_vertical_margin"
               tools:context="pr.tongson.wave.MainActivity">
 
+    <pr.tongson.wave.WuxingView
+        android:layout_width="288dp"
+        android:layout_height="288dp"
+        android:layout_gravity="center"
+        android:background="@mipmap/name_wuxingxiangke_img"
+        android:layout_margin="10dp"/>
+
     <pr.tongson.wave.RenderingView
         android:id="@+id/renderview"
-        android:layout_width="60dp"
-        android:layout_height="60dp"/>
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
 
 
     <TextView
