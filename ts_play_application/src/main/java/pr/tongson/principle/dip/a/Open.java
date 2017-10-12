@@ -1,4 +1,4 @@
-package pr.tongson.principle.dip;
+package pr.tongson.principle.dip.a;
 
 /**
  * <b>Create Date:</b> 2017/10/9<br>

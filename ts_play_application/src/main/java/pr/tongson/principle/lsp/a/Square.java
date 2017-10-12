@@ -1,4 +1,4 @@
-package pr.tongson.principle.lsp;
+package pr.tongson.principle.lsp.a;
 
 /**
  * <b>Create Date:</b> 2017/10/9<br>
