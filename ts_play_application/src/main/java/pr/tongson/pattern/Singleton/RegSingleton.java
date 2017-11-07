@@ -6,7 +6,9 @@ import java.util.HashMap;
  * <b>Create Date:</b> 2017/11/7<br>
  * <b>Author:</b> Tongson <br>
  * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
+ * <b>Description:</b> 登记式单例类 <br>
+ * 饿汉式
+ * 可继承
  */
 public class RegSingleton {
     static private HashMap mRegistry = new HashMap();
@@ -48,7 +50,6 @@ public class RegSingleton {
 
         return (RegSingleton) mRegistry.get(name);
     }
-
 
     /**
      * 一些示意性的商业方法

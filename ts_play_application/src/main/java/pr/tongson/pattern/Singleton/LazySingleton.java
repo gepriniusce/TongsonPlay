@@ -7,7 +7,7 @@ package pr.tongson.pattern.Singleton;
  * <b>Description:</b> 懒汉式单例类 <br>
  * 懒汉式单例类在实例化时，必须处理好在多个线程同时抽次引用此类时访问限制问题，特别是当单例类作为资源控制器在实例化时必然涉及资源初始化，而资源初始化很有可能耗费时间。
  * 这意味着出现多线程同时首次引用此类的几率变得较大。
- * 
+ * <p>
  * 不可继承
  */
 public class LazySingleton {

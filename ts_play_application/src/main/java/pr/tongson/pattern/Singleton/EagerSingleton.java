@@ -9,7 +9,7 @@ package pr.tongson.pattern.Singleton;
  * 即便加载器是静态的，在饿汉式单例类加载时仍会将自己实例化。
  * 单从资源利用率角度来讲，这个比懒汉式单例类稍差些。
  * 从速度和反应时间角度来讲，则比懒汉式单例类稍好些。
- * 
+ * <p>
  * 不可继承
  */
 public class EagerSingleton {

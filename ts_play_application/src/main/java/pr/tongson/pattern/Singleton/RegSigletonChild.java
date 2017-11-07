@@ -4,16 +4,18 @@ package pr.tongson.pattern.Singleton;
  * <b>Create Date:</b> 2017/11/7<br>
  * <b>Author:</b> Tongson <br>
  * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
+ * <b>Description:</b> 登记式单例类 <br>
+ * 懒汉式
+ * 子类
  */
 public class RegSigletonChild extends RegSingleton {
+
     public RegSigletonChild() {
     }
 
     static public RegSigletonChild getInstance() {
         return (RegSigletonChild) RegSingleton.getInstance("pr.tongson.pattern.Singleton.RegSigletonChild");
     }
-
 
     /**
      * 一些示意性的商业方法
