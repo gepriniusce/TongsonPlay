@@ -14,6 +14,7 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'https://maven.google.com' }  //添加此行
         jcenter()
     }
 }
