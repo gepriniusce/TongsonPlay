@@ -12,34 +12,44 @@ import android.util.Log;
  * <b>Description:</b>  <br>
  */
 public class HttpRequest implements LifecycleObserver {
+
     public HttpRequest() {
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
+    public void onAny() {
+        Log.i("Tongson", "ON_ANY");
+    }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    public void create() {
-        Log.i("Tongson", "create");
+    public void onCreate() {
+        Log.i("Tongson", "ON_CREATE");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    public void start() {
-        Log.i("Tongson", "start");
-
+    public void onStart() {
+        Log.i("Tongson", "ON_START");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    public void resume() {
-        Log.i("Tongson", "resume");
-
+    public void onResume() {
+        Log.i("Tongson", "ON_RESUME");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    public void pause() {
-        Log.i("Tongson", "pause");
-
+    public void onPause() {
+        Log.i("Tongson", "ON_PAUSE");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    public void stop() {
-        Log.i("Tongson", "stop");
+    public void onStop() {
+        Log.i("Tongson", "ON_STOP");
     }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    public void onDestroy() {
+        Log.i("Tongson", "onDestroy");
+    }
+    
+    
 }
