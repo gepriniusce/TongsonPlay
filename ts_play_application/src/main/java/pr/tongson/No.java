@@ -51,9 +51,9 @@ public class No {
      */
     public void initNotify() {
         mBuilder = new NotificationCompat.Builder(mContext);
-        RemoteViews remoteViews = new RemoteViews("oms.mmc.fortunetelling.measuringtools.naming", R.layout.notify_tiandengyou_layout);
+        RemoteViews remoteViews = new RemoteViews("pr.tongson", R.layout.layout_notify);
         remoteViews.setTextViewText(R.id.push_message_text, "领取您的优惠券！哈哈！");
-        remoteViews.setImageViewResource(R.id.notify_icon_iv, R.drawable.ic_launcher);
+        remoteViews.setImageViewResource(R.id.notify_icon_iv, R.mipmap.ic_launcher);
         mBuilder.setContent(remoteViews)
                 //通知产生的时间，会在通知信息里显示
                 .setWhen(System.currentTimeMillis())
@@ -64,7 +64,7 @@ public class No {
                 //向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用defaults属性，可以组合：
                 .setDefaults(Notification.DEFAULT_VIBRATE)
                 //Notification.DEFAULT_ALL  Notification.DEFAULT_SOUND 添加声音 // requires VIBRATE permission
-                .setSmallIcon(R.drawable.ic_launcher);
+                .setSmallIcon(R.mipmap.ic_launcher);
     }
 
     /**
@@ -77,7 +77,7 @@ public class No {
         mBuilder.setAutoCancel(true);
         //点击的意图ACTION是跳转到Intent
         Intent resultIntent = new Intent();
-        resultIntent.setClassName(mContext, "com.mmc.name.main.ui.activity.NameMainActivity");
+        resultIntent.setClassName(mContext, "pr.tongson.MainActivity");
         resultIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(pendingIntent);

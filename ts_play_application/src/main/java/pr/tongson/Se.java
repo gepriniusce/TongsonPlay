@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -24,8 +23,6 @@ public class Se extends Service {
 
     private String TAG = "TimeService";
     private ScheduledExecutorService mScheduledExecutorService;
-    private Timer timer = null;
-    private Intent timeIntent = null;
 
 
     @Override
@@ -34,14 +31,6 @@ public class Se extends Service {
         Log.i(TAG, "TimeService->onCreate");
         //初始化
         this.init();
-        //定时器发送广播
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                //发送广播
-                Log.i(TAG, "timer");
-            }
-        }, 1000, 1000);
         
         mScheduledExecutorService = new ScheduledThreadPoolExecutor(2);
 
@@ -50,11 +39,14 @@ public class Se extends Service {
             public void run() {
 
                 Log.i(TAG, "ScheduledThreadPoolExecutor：timer invoked");
-
+                No no=new No(getApplicationContext());
+                no.initNotify();
+                no.initService();
+                no.showIntentActivityNotify();
             }
         };
 
-        mScheduledExecutorService.schedule(task2, 3000, TimeUnit.MILLISECONDS);
+        mScheduledExecutorService.schedule(task2, 10000, TimeUnit.MILLISECONDS);
     }
 
     @Override
@@ -67,8 +59,6 @@ public class Se extends Service {
      * 相关变量初始化
      */
     private void init() {
-        timer = new Timer();
-        timeIntent = new Intent();
     }
 
     @Override
