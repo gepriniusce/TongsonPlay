@@ -6,6 +6,7 @@ package pr.tongson.pattern2.Decorator;
  * <b>Email:</b> 289286298@qq.com<br>
  * <b>Description:</b> 具体构件 <br>
  *     大圣本尊
+ *     可以不implements Component
  */
 public class ConcreteComponent implements Component {
 
