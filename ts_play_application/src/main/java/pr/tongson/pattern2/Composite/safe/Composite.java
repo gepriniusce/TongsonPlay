@@ -4,10 +4,7 @@ import java.util.Enumeration;
 import java.util.Vector;
 
 /**
- * <b>Create Date:</b> 2017/12/13<br>
- * <b>Author:</b> Tongson <br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
+ * <b>Description:</b> 树枝构件 <br>
  */
 public class Composite implements Component {
 
@@ -39,7 +36,6 @@ public class Composite implements Component {
      *
      * @return
      */
-    @Override
     public Enumeration components() {
         return componentVector.elements();
     }
@@ -49,7 +45,6 @@ public class Composite implements Component {
      *
      * @param component
      */
-    @Override
     public void add(Component component) {
         componentVector.addElement(component);
     }
@@ -59,10 +54,7 @@ public class Composite implements Component {
      *
      * @param component
      */
-    @Override
     public void remove(Component component) {
         componentVector.removeElement(component);
     }
-
-
 }

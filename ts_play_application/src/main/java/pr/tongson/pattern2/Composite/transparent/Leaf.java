@@ -1,10 +1,9 @@
-package pr.tongson.pattern2.Composite;
+package pr.tongson.pattern2.Composite.transparent;
+
+import java.util.Enumeration;
 
 /**
- * <b>Create Date:</b> 2017/12/13<br>
- * <b>Author:</b> Tongson <br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
+ * <b>Description:</b> 树叶构件 <br>
  */
 public class Leaf implements Component {
     /**
@@ -24,5 +23,20 @@ public class Leaf implements Component {
     @Override
     public void sampleOperation() {
         //Write ur code here
+    }
+
+    @Override
+    public Enumeration components() {
+        return null;
+    }
+
+    @Override
+    public void add(Component component) {
+
+    }
+
+    @Override
+    public void remove(Component component) {
+
     }
 }
