@@ -1,7 +1,5 @@
 package pr.tongson.pattern2.Flyweight.Composite;
 
-import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -10,9 +8,6 @@ import pr.tongson.pattern2.Flyweight.ConcreteFlyweight;
 import pr.tongson.pattern2.Flyweight.Flyweight;
 
 /**
- * <b>Create Date:</b> 2017/12/20<br>
- * <b>Author:</b> Tongson <br>
- * <b>Email:</b> 289286298@qq.com<br>
  * <b>Description:</b> 享元工厂 <br>
  */
 public class FlyweightFactory {

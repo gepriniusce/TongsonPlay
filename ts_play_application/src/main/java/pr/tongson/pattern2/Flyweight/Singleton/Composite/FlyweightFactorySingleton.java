@@ -9,9 +9,6 @@ import pr.tongson.pattern2.Flyweight.ConcreteFlyweight;
 import pr.tongson.pattern2.Flyweight.Flyweight;
 
 /**
- * <b>Create Date:</b> 2017/12/25<br>
- * <b>Author:</b> Tongson <br>
- * <b>Email:</b> 289286298@qq.com<br>
  * <b>Description:</b> 使用单例模式实现享元工厂角色 <br>
  */
 public class FlyweightFactorySingleton {

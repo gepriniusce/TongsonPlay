@@ -5,9 +5,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * <b>Create Date:</b> 2017/12/20<br>
- * <b>Author:</b> Tongson <br>
- * <b>Email:</b> 289286298@qq.com<br>
  * <b>Description:</b> 享元工厂 <br>
  */
 public class FlyweightFactory {
