@@ -4,11 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * <b>Create Date:</b> 2018/1/23<br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
- *
- * @author mmc_Kongming_Tongson
+ * <b>Description:</b> 观察者 <br>
  */
 public class Watcher implements Observer {
     public Watcher(Watched w) {

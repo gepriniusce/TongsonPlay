@@ -1,13 +1,14 @@
 package pr.tongson.pattern3.Iterator.whitebox;
 
 /**
- * <b>Create Date:</b> 2018/1/23<br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
- *
- * @author mmc_Kongming_Tongson
+ * <b>Description:</b> 具体聚集角色 <br>
+ * 白箱聚集，可以是不变对象。
  */
 public class ConcreteAggregate extends Aggregate {
+
+    /**
+     * 聚集对象。类被加载时就被初始化的。在被加载后，聚集的元素就不再变化。
+     */
     private Object[] mObjects = {"Monk Tang", "Monkey", "Pigsy", "Sandy", "Horse"};
 
     /**

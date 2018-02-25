@@ -17,7 +17,7 @@ public class Invoker {
     /**
      * 行动方法
      */
-    public void action() {
+    public void action()  {
         mCommand.execute();
     }
 }

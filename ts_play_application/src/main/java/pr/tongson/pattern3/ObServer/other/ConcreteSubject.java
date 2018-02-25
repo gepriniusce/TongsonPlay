@@ -1,11 +1,7 @@
 package pr.tongson.pattern3.ObServer.other;
 
 /**
- * <b>Create Date:</b> 2018/1/23<br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
- *
- * @author mmc_Kongming_Tongson
+ * <b>Description:</b> 具体主题 <br>
  */
 public class ConcreteSubject extends Subject {
     private String state;

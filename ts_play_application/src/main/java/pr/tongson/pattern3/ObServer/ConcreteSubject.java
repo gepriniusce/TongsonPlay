@@ -4,11 +4,7 @@ import java.util.Enumeration;
 import java.util.Vector;
 
 /**
- * <b>Create Date:</b> 2018/1/23<br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
- *
- * @author mmc_Kongming_Tongson
+ * <b>Description:</b> 具体主题 <br>
  */
 public class ConcreteSubject implements Subject {
     private Vector observersVector = new Vector();

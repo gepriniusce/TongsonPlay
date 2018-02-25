@@ -1,15 +1,20 @@
 package pr.tongson.pattern3.Strategy;
 
 /**
- * <b>Create Date:</b> 2018/1/23<br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
+ * <b>Description:</b> 环境 <br>
  *
  * @author mmc_Kongming_Tongson
  */
 public class Context {
     private Strategy mStrategy;
 
+    public Context(Strategy strategy) {
+        mStrategy = strategy;
+    }
+
+    /**
+     * 策略方法
+     */
     public void contextInterface() {
         mStrategy.strategyInterface();
     }

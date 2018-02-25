@@ -1,18 +1,19 @@
 package pr.tongson.pattern3.Iterator.whitebox;
 
 /**
- * <b>Create Date:</b> 2018/1/23<br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
- *
- * @author mmc_Kongming_Tongson
+ * <b>Description:</b> 客户端 <br>
  */
 public class Client {
     private Iterator it;
+    /**
+     * 创建一个聚集类实例
+     */
     private Aggregate agg = new ConcreteAggregate();
 
     public void opration() {
+        //得到一个迭代子对象
         it = agg.createIterator();
+        //
         while (!it.isDone()) {
             System.out.println(it.currentItem().toString());
             it.next();

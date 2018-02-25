@@ -2,11 +2,7 @@ package pr.tongson.pattern3.ObServer;
 
 
 /**
- * <b>Create Date:</b> 2018/1/23<br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
- *
- * @author mmc_Kongming_Tongson
+ * <b>Description:</b> 抽象主题 <br>
  */
 public interface Subject {
     /**
