@@ -13,7 +13,7 @@ public class Variable extends Expression {
     public Variable(String name) {
         this.name = name;
     }
-
+    
     @Override
     public boolean interpret(Context ctx) {
         return ctx.lookup(this);

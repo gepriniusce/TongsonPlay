@@ -37,5 +37,4 @@ public class Or extends Expression {
     public String toString() {
         return "(" + left.toString() + "OR" + right.toString() + ")";
     }
-
 }

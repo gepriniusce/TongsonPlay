@@ -1,11 +1,7 @@
 package pr.tongson.pattern3.Interpreter;
 
 /**
- * <b>Create Date:</b> 2018/1/24<br>
- * <b>Email:</b> 289286298@qq.com<br>
  * <b>Description:</b> 这个抽象类代表终结类和非终结类的抽象化<br>
- *
- * @author mmc_Kongming_Tongson
  */
 abstract public class Expression {
     /**

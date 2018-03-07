@@ -1,11 +1,7 @@
 package pr.tongson.pattern3.Memento.whitebox;
 
 /**
- * <b>Create Date:</b> 2018/1/24<br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
- *
- * @author mmc_Kongming_Tongson
+ * <b>Description:</b> 负责人角色 <br>
  */
 public class Caretaker {
     private Memento mMemento;
@@ -14,7 +10,7 @@ public class Caretaker {
         return this.mMemento;
     }
 
-    public void saveMementto(Memento memento) {
+    public void saveMemento(Memento memento) {
         this.mMemento = memento;
     }
 }

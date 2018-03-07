@@ -10,16 +10,11 @@ package pr.tongson.pattern3.State.tcp;
 public class TcpEstablished implements TcpState{
     @Override
     public void open() {
-        
     }
-
     @Override
     public void close() {
-
     }
-
     @Override
     public void acknowledge() {
-
     }
 }

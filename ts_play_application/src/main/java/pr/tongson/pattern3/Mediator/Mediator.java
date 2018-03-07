@@ -1,13 +1,13 @@
 package pr.tongson.pattern3.Mediator;
 
 /**
- * <b>Create Date:</b> 2018/1/24<br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
- *
- * @author mmc_Kongming_Tongson
+ * <b>Description:</b> 抽象调停者类 <br>
  */
 abstract public class Mediator {
+    /**
+     * 事件方法，由子类实现
+     * @param colleague
+     */
     abstract void colleagueChanged(Colleague colleague);
 
     public static void main(String[] args) {

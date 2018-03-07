@@ -1,11 +1,7 @@
 package pr.tongson.pattern3.Mediator;
 
 /**
- * <b>Create Date:</b> 2018/1/24<br>
- * <b>Email:</b> 289286298@qq.com<br>
- * <b>Description:</b>  <br>
- *
- * @author mmc_Kongming_Tongson
+ * <b>Description:</b> 具体同事类 <br>
  */
 public class Colleague2 extends Colleague {
 

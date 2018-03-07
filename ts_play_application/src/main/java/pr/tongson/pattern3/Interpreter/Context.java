@@ -16,7 +16,6 @@ public class Context {
         map.put(var, new Boolean(value));
     }
 
-
     public boolean lookup(Variable var) throws IllegalArgumentException {
 
         Boolean value = (Boolean) map.get(var);

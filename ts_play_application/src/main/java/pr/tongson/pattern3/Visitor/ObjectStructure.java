@@ -28,5 +28,4 @@ public class ObjectStructure {
     public void add(Node node) {
         nodes.addElement(node);
     }
-
 }

@@ -9,11 +9,9 @@ package pr.tongson.pattern3.State.tcp;
  */
 public class TcpConnection {
     private TcpState mTcpState;
-
     public void setTcpState(TcpState tcpState) {
         mTcpState = tcpState;
     }
-
     public void open(){
         mTcpState.open();
     }
@@ -23,5 +21,4 @@ public class TcpConnection {
     public void acknowledge(){
         mTcpState.acknowledge();
     }
-    
 }
