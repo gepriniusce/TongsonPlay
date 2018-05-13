@@ -1,5 +1,7 @@
 package pr.tongson;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -8,6 +10,9 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import pr.tongson.view.HighLightView;
 
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, ScaleGestureDetector.OnScaleGestureListener, View.OnClickListener {
 
@@ -21,18 +26,56 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
      */
     ScaleGestureDetector mScaleGestureDetector;
 
+    Button gestureDetector;
+
+    Button scaleGestureDetector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button gestureDetector = findViewById(R.id.btn_GestureDetector);
-        Button scaleGestureDetector = findViewById(R.id.btn_ScaleGestureDetector);
+        gestureDetector = findViewById(R.id.btn_GestureDetector);
+        scaleGestureDetector = findViewById(R.id.btn_ScaleGestureDetector);
         gestureDetector.setOnClickListener(this);
         scaleGestureDetector.setOnClickListener(this);
 
         mGestureDetector = new GestureDetector(this, this);
         mScaleGestureDetector = new ScaleGestureDetector(this, this);
 
+
+        initHightLight();
+
+    }
+
+    private void initHightLight() {
+        final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        ImageView guideView = new ImageView(this);
+        guideView.setImageBitmap(bitmap);
+        
+        HighLightView highLight = new HighLightView(this).
+                setTargetViews(new View[]{scaleGestureDetector,gestureDetector}).
+                setCanTouchToDimiss(true).
+                setGuideView(guideView).
+                //LOCATIONTYPE. 
+                setLocationType(HighLightView.LOCATIONTYPE.BOTTOM).
+                //MASK_TYPE.        
+                setMaskType(HighLightView.MASK_TYPE.ROUNDRECT).
+                setOffsetX(0).
+                setOffsetY(0).
+                setListener(new HighLightView.HighLightListener() {
+
+                    @Override
+                    public void onShow(HighLightView highLightView) {
+                    }
+
+                    @Override
+                    public void onDismiss(final HighLightView highLightView) {
+                      
+                    }
+                }).show();
+        
+        
+        
     }
 
     @Override
