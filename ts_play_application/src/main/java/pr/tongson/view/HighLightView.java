@@ -195,35 +195,40 @@ public class HighLightView extends ViewGroup {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int rc = canvas.saveLayer(0, 0, HighLightView.this.getRight(), HighLightView.this.getBottom(), null, Canvas.ALL_SAVE_FLAG);
-        Paint bg_paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
-        bg_paint.setColor(maskColor);
-        bg_paint.setAlpha(maskAlpha);
-        Paint qg_paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
-        qg_paint.setColor(Color.WHITE);
-        qg_paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
 
         if (auchorView == null) {
             auchorView = (ViewGroup) mActivity.findViewById(android.R.id.content);
         }
 
+        Paint bgPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
+        bgPaint.setColor(maskColor);
+        bgPaint.setAlpha(maskAlpha);
         /*绘制蒙板层*/
-        int auchorLeft = 0;
-        int auchorTop = 0;
-        int auchorWidth = auchorView.getWidth();
-        int auchorHeight = auchorView.getHeight();
-        canvas.drawRect(auchorLeft, auchorTop, auchorLeft + auchorWidth, auchorTop + auchorHeight, bg_paint);
-        Log.i(TAG, "onDraw--蒙板层：left：" + auchorLeft + " right：" + (auchorLeft + auchorWidth) + " top：" + auchorTop + " bottom：" + (auchorTop + auchorHeight));
-        //        System.out.println("蒙板层：left：" + auchorLeft + " right：" + (auchorLeft + auchorWidth) + " top：" + auchorTop + " bottom：" + (auchorTop + auchorHeight));
-        
+        drawDark(canvas,bgPaint);
+
+        Paint qgPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
+        qgPaint.setColor(Color.WHITE);
+        qgPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+
+        /*绘制高亮地方*/
         for (View targetView : targetViews) {
-            drawLight(canvas, qg_paint, targetView);
+            drawLight(canvas, qgPaint, targetView);
         }
 
         canvas.restoreToCount(rc);
     }
 
-    private void drawLight(Canvas canvas, Paint qg_paint, View targetView) {
-        /*绘制高亮地方*/
+    private void drawDark(Canvas canvas, Paint bgPaint) {
+        int auchorLeft = 0;
+        int auchorTop = 0;
+        int auchorWidth = auchorView.getWidth();
+        int auchorHeight = auchorView.getHeight();
+        canvas.drawRect(auchorLeft, auchorTop, auchorLeft + auchorWidth, auchorTop + auchorHeight, bgPaint);
+        Log.i(TAG, "onDraw--蒙板层：left：" + auchorLeft + " right：" + (auchorLeft + auchorWidth) + " top：" + auchorTop + " bottom：" + (auchorTop + auchorHeight));
+        //        System.out.println("蒙板层：left：" + auchorLeft + " right：" + (auchorLeft + auchorWidth) + " top：" + auchorTop + " bottom：" + (auchorTop + auchorHeight));
+    }
+
+    private void drawLight(Canvas canvas, Paint qgPaint, View targetView) {
         int[] highlightLocation = new int[2];
         targetView.getLocationInWindow(highlightLocation);
         int width = targetView.getWidth();
@@ -236,15 +241,15 @@ public class HighLightView extends ViewGroup {
         /*算高亮形式*/
         switch (maskType) {
             case RECT:
-                canvas.drawRect(left, top, right, bottom, qg_paint);
+                canvas.drawRect(left, top, right, bottom, qgPaint);
                 break;
             case ROUNDRECT:
                 RectF targetRectF = new RectF(left - round / 4, top - round / 4, right + round / 4, bottom + round / 4);
-                canvas.drawRoundRect(targetRectF, round, round, qg_paint);
+                canvas.drawRoundRect(targetRectF, round, round, qgPaint);
                 break;
             case CIRCLE:
                 /* 用view的斜边来做圆的直径，确保高亮圆圈包括所有view边界 */
-                canvas.drawCircle((left + right) / 2, (top + bottom) / 2, (float) Math.sqrt(width * width + height * height) / 2, qg_paint);
+                canvas.drawCircle((left + right) / 2, (top + bottom) / 2, (float) Math.sqrt(width * width + height * height) / 2, qgPaint);
                 break;
             case ELLIPSE:
                 double a = (Math.sqrt(2) / 2 * width) * 2;
@@ -252,7 +257,7 @@ public class HighLightView extends ViewGroup {
                 int wTemp = (int) ((a - right + left) / 2);
                 int hTemp = (int) ((b - bottom + top) / 2);
                 RectF targetRectF1 = new RectF(left - wTemp, top - hTemp, right + wTemp, bottom + hTemp);
-                canvas.drawOval(targetRectF1, qg_paint);
+                canvas.drawOval(targetRectF1, qgPaint);
                 break;
         }
     }
