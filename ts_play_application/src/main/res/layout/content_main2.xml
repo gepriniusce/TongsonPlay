@@ -9,4 +9,141 @@
     tools:context=".activity.Main2Activity"
     tools:showIn="@layout/app_bar_main2">
 
+    <TextView
+        android:id="@+id/tv_index_dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="dp:"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/tv_index_px"
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:layout_marginLeft="20px"
+        android:layout_marginStart="20px"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+
+        android:text="px:"
+        android:textSize="20px"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_index_dp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/tv_index_sp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginStart="20sp"
+
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="sp:"
+        android:textSize="20sp"
+
+        app:layout_constraintStart_toEndOf="@+id/tv_index_px"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/tv_dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="20"
+
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_index_dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_px"
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:layout_marginLeft="20px"
+        android:layout_marginStart="20px"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="20"
+        android:textSize="20px"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_index_px"/>
+
+
+    <TextView
+        android:id="@+id/tv_sp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginStart="20sp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="20"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_px"
+        app:layout_constraintTop_toBottomOf="@+id/tv_index_sp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="还是这条街 还是这个小店 我坐在靠窗的座位 希望你能看得见 十年之前 我没有时间消遣 没有时间陪你过完 区区一个冬天"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            android:text="还是这条街 还是这个小店 我坐在靠窗的座位 希望你能看得见 十年之前 我没有时间消遣 没有时间陪你过完 区区一个冬天"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            android:text="还是这条街 还是这个小店 我坐在靠窗的座位 希望你能看得见 十年之前 我没有时间消遣 没有时间陪你过完 区区一个冬天"
+            android:textSize="20px"
+            />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_screen_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
 </android.support.constraint.ConstraintLayout>
