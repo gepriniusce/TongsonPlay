@@ -8,6 +8,26 @@
     android:layout_height="match_parent"
     tools:context=".activity.Main3Activity$PlaceholderFragment">
 
+
+    <pr.tongson.view.PackageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        
+        
+        <pr.tongson.view.BaseView
+            android:layout_width="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:layout_height="wrap_content"/>
+        
+        
+        
+    </pr.tongson.view.PackageView>
+
     <TextView
         android:id="@+id/section_label"
         android:layout_width="wrap_content"

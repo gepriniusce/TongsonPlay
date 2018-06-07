@@ -13,9 +13,11 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import pr.tongson.R;
+import pr.tongson.utils.DisplayMetricsUtil;
 
 public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -43,8 +45,19 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         navigationView.setNavigationItemSelectedListener(this);
 
         initMyView();
+        initCount();
     }
 
+    private void initCount() {
+        TextView resultTv = findViewById(R.id.tv_result);
+        resultTv.setTextSize(DisplayMetricsUtil.dp2sp(getApplicationContext(), 30));
+        resultTv.setText("66666666666666");
+        Button resultbtn = findViewById(R.id.btn_result);
+        resultbtn.setTextSize(30);
+        resultbtn.setText("66666666666666");
+        TextView wrapTv = findViewById(R.id.tv_wrap_content);
+        wrapTv.setText("" +  wrapTv.getTextSize());
+    }
 
     @Override
     public void onBackPressed() {
@@ -103,48 +116,49 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         return true;
     }
 
+
     private void initMyView() {
-        DisplayMetrics dm = new DisplayMetrics();
-        dm = getResources().getDisplayMetrics();
+        DisplayMetrics dm = getResources().getDisplayMetrics();
 
         StringBuffer stringBuffer = new StringBuffer();
 
-        // 屏幕密度（像素比例：0.75/1.0/1.5/2.0）  
-        float density = dm.density;
+        //        // 屏幕密度（像素比例：0.75/1.0/1.5/2.0）  
+        //        float density = dm.density;
+        //
+        //        stringBuffer.append("density").append(":").append(density).append("\n");
+        //
+        //        // 屏幕密度（每寸像素：120/160/240/320）  
+        //        int densityDPI = dm.densityDpi;
+        //        stringBuffer.append("densityDpi").append(":").append(densityDPI).append("\n");
+        //        
+        //        float scaledDensity = dm.scaledDensity;
+        //        stringBuffer.append("scaledDensity").append(":").append(scaledDensity).append("\n");
+        //
+        //        float xdpi = dm.xdpi;
+        //        float ydpi = dm.ydpi;
+        //        stringBuffer.append("xdpi").append(":").append(xdpi).append("\n");
+        //        stringBuffer.append("ydpi").append(":").append(ydpi).append("\n");
+        //
+        //        // 屏幕宽（像素，如：480px）  
+        //        int screenWidth = dm.widthPixels;
+        //        // 屏幕高（像素，如：800px）  
+        //        int screenHeight = dm.heightPixels;
+        //
+        //
+        //        stringBuffer.append("screenWidth").append(":").append(screenWidth).append("\n");
+        //        stringBuffer.append("screenHeight").append(":").append(screenHeight).append("\n");
+        //        
+        //
+        //        // 屏幕宽（px，如：480px）  
+        //        screenWidth  = (int)(dm.widthPixels / density + 0.5f);
+        //        // 屏幕高（px，如：800px） 
+        //        screenHeight = (int)(dm.heightPixels / density + 0.5f);
+        //
+        //        stringBuffer.append("screenWidth").append(":").append(screenWidth).append("\n");
+        //        stringBuffer.append("screenHeight").append(":").append(screenHeight).append("\n");
 
-        stringBuffer.append("density").append(":").append(density).append("\n");
-
-        // 屏幕密度（每寸像素：120/160/240/320）  
-        int densityDPI = dm.densityDpi;
-        stringBuffer.append("densityDpi").append(":").append(densityDPI).append("\n");
-        
-        float scaledDensity = dm.scaledDensity;
-        stringBuffer.append("scaledDensity").append(":").append(scaledDensity).append("\n");
-
-        float xdpi = dm.xdpi;
-        float ydpi = dm.ydpi;
-        stringBuffer.append("xdpi").append(":").append(xdpi).append("\n");
-        stringBuffer.append("ydpi").append(":").append(ydpi).append("\n");
-
-        // 屏幕宽（像素，如：480px）  
-        int screenWidth = dm.widthPixels;
-        // 屏幕高（像素，如：800px）  
-        int screenHeight = dm.heightPixels;
-
-
-        stringBuffer.append("screenWidth").append(":").append(screenWidth).append("\n");
-        stringBuffer.append("screenHeight").append(":").append(screenHeight).append("\n");
-        
-
-        // 屏幕宽（px，如：480px）  
-        screenWidth  = (int)(dm.widthPixels / density + 0.5f);
-        // 屏幕高（px，如：800px） 
-        screenHeight = (int)(dm.heightPixels / density + 0.5f);
-
-        stringBuffer.append("screenWidth").append(":").append(screenWidth).append("\n");
-        stringBuffer.append("screenHeight").append(":").append(screenHeight).append("\n");
-        
-        
+        stringBuffer.append(dm.toString());
+        stringBuffer.append("densityDpi:" + dm.densityDpi);
         TextView screenMsgTv = findViewById(R.id.tv_screen_msg);
         screenMsgTv.setText(stringBuffer);
     }
